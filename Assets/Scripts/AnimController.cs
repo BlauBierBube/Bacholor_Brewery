@@ -117,6 +117,8 @@ public class AnimController : MonoBehaviour
         moveTowards = true;
         //BrewMat Blue/Green #3A5B95
         BrewMat.SetColor("DeepColor", new Color(10,140,140,50));
+        BrewMat.SetColor("_WaterColorShallow", new Color(10, 140, 140, 50));
+        BrewMat.SetColor("_WaterColorDeep", new Color(10, 140, 140, 50));
         if (b1 == false)
         {
             b1 = true;
@@ -131,6 +133,9 @@ public class AnimController : MonoBehaviour
         TankHole.SetActive(false);
         //BrewMat Yellow #E08100
         BrewMat.SetColor("DeepColor", new Color(224, 129, 0, 255));
+        BrewMat.SetColor("_WaterColorShallow", new Color(152, 117, 28, 154));
+        BrewMat.SetColor("_WaterColorDeep", new Color(84, 45, 4, 253));
+
         if (b2 == false)
         {
             b2 = true;
