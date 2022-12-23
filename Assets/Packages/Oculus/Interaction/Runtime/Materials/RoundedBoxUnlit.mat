@@ -27,8 +27,8 @@ Material:
     m_Floats:
     - _ZTest: 0
     m_Colors:
-    - _BorderColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BorderColor: {r: 0.30196077, g: 0.29411763, b: 0.28235292, a: 0.18431373}
+    - _Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 0.73333335}
     - _Dimensions: {r: 0.01, g: 0.04, b: 0.002, a: 0}
     - _Radii: {r: 0.2, g: 0.2, b: 0.2, a: 0.2}
   m_BuildTextureStacks: []
