@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 6271589424770429710}
   - component: {fileID: 4695177899553507782}
   - component: {fileID: 8249326650507371107}
+  - component: {fileID: 2300738410004697664}
   - component: {fileID: 4211315372789538677}
   m_Layer: 0
   m_Name: FlipSwitch_01
@@ -533,10 +534,31 @@ MonoBehaviour:
   _constraints:
     MinAngle:
       Constrain: 1
-      Value: -35
+      Value: 0
     MaxAngle:
       Constrain: 1
-      Value: 35
+      Value: 70
+--- !u!114 &2300738410004697664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4347569766702484796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f796d0f393babb843b7042a592ae4586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Textfield: {fileID: 0}
+  Needle: {fileID: 0}
+  snapAcitve: 1
+  TagetArea: 35
+  TagetRange: 10
+  AlwaysAktive: 1
+  onSolved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4211315372789538677
 MonoBehaviour:
   m_ObjectHideFlags: 0

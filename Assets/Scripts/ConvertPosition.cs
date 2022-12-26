@@ -37,8 +37,8 @@ public class ConvertPosition : MonoBehaviour
         if (isOnFinish == false)
         {
 
-            TTop.text = ((TopVisual.transform.localScale.z*100) / (ScaleTop + ScaleBot)) +"%";
-            TBot.text = ((BotVisual.transform.localScale.z*100) / (ScaleTop + ScaleBot)) + "%";
+            TTop.text = Mathf.Round((TopVisual.transform.localScale.z*100) / (ScaleTop + ScaleBot)) +"%";
+            TBot.text = Mathf.Round((BotVisual.transform.localScale.z*100) / (ScaleTop + ScaleBot)) + "%";
             TopVisual.transform.position = transform.position;
             ParentText.transform.position = transform.position;
 
