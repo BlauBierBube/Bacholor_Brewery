@@ -83,7 +83,7 @@ namespace Oculus.Interaction {
         // Update is called once per frame
         void Update()
         {
-            Debug.LogError("i = "+i);
+            //Debug.LogError("i = "+i);
             //Debug.LogError("count =" + count);
             if (rotate == true)
             {
@@ -113,16 +113,17 @@ namespace Oculus.Interaction {
 
         public void Step00()
         {
-            Debug.LogError("Step00 is aktiv");
+            //Debug.LogError("Step00 is aktiv");
             Text01.SetActive(true);
             Holo_Area01.SetActive(false);
+            //Buttons and Index Number
             StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
             i = 0;
         }
         public void Step01()
         {
-            Debug.LogError("Step01 is aktiv");
+            //Debug.LogError("Step01 is aktiv");
             Text01.SetActive(false);
             Text02.SetActive(true);
             Button01.layer = HighlightLayer;
@@ -131,19 +132,21 @@ namespace Oculus.Interaction {
             Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled= true;
             Button02.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = true;
             Switch01.GetComponent<CheckRotation>().enabled = true;
+            //Button Backward and Index Number
             StartCoroutine(WaitButton());
             i = 1;
         }
 
 
-        public void Step02() // Button 1
+        public void Step02() // Button 1 Water
         {
-            Debug.LogError("Step02 is aktiv");
+            //Debug.LogError("Step02 is aktiv");
             Button01.layer = Default;
             Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = false;
             PipeHole.SetActive(false);
             WaterAni.SetActive(true);
             Text02_W.fontStyle = FontStyles.Strikethrough;
+            Brew01.SetActive(true);
             moveTowards = true;
             //BrewMat Blue/Green #3A5B95
             //BrewMat.SetColor("DeepColor", new Color(10,140,140,50));
@@ -161,7 +164,7 @@ namespace Oculus.Interaction {
 
         public void Step03() // Button 2
         {
-            Debug.LogError("Step03 is aktiv");
+            //Debug.LogError("Step03 is aktiv");
             Button02.layer = Default;
             Button02.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = false;
             TankHole.SetActive(false);
@@ -182,7 +185,7 @@ namespace Oculus.Interaction {
 
         public void Step04() // Switch 1
         {
-            Debug.LogError("Step04 is aktiv");
+            //Debug.LogError("Step04 is aktiv");
             Switch01.GetComponent<CheckRotation>().enabled = false;
             Switch01.layer = Default;
             Text02_T.fontStyle = FontStyles.Strikethrough;
@@ -196,27 +199,29 @@ namespace Oculus.Interaction {
         }
         public void Step05() // Counter Finish
         {
-            Debug.LogError("Step05 is aktiv");
+            //Debug.LogError("Step05 is aktiv");
             Text02.SetActive(false);
             Text03.SetActive(true);
             PipeHole.SetActive(true);
             TankHole.SetActive(true);
+            //Button and Index Number
             Invoke("ForwardBT", 2f);
             i = 5;
         }
         public void Step06() 
         {
-            Debug.LogError("Step06 is aktiv");
+            //Debug.LogError("Step06 is aktiv");
             Text03.SetActive(false);
             Text04.SetActive(true);
             Switch02.layer = HighlightLayer;
             Switch02.GetComponent<CheckRotation>().enabled = true;
+            //Button and Index Number
             StartCoroutine(WaitButton());
             i = 6;
         }
         public void Step07() // Switch 2
         {
-            Debug.LogError("Step07 is aktiv");
+            //Debug.LogError("Step07 is aktiv");
             Switch02.GetComponent<CheckRotation>().enabled = false;
             Switch02.layer = Default;
             Text04.SetActive(false);
@@ -224,13 +229,14 @@ namespace Oculus.Interaction {
             TankFront.SetActive(false);
             Text04_M.fontStyle = FontStyles.Strikethrough;
             rotate = true;
+            //Buttons and Index Number
             StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
             i = 7;
         }
         public void Step08()
         {
-            Debug.LogError("Step08 is aktiv");
+            //Debug.LogError("Step08 is aktiv");
             Text05.SetActive(false);
             Text06.SetActive(true);
             Holo_Area02.SetActive(true);
@@ -239,6 +245,7 @@ namespace Oculus.Interaction {
             Bubbles.SetActive(false);
             Brew01.SetActive(false);
             rotate = false;
+            //Button and Index Number
             StartCoroutine(WaitButton());
             i = 8;
         }
@@ -308,7 +315,7 @@ namespace Oculus.Interaction {
         }
         IEnumerator ScaleObject(GameObject O, float S)
         {
-            Debug.LogError("Scale Active für " + O);
+            //Debug.LogError("Scale Active für " + O);
             float scaleFactor = 0.01f;
             float scaleMax = S;
             float scaleIncrement = 0.01f;
@@ -328,7 +335,7 @@ namespace Oculus.Interaction {
 
         IEnumerator WaitButton()
         {
-            Debug.LogError("WaitButton is aktiv");
+            //Debug.LogError("WaitButton is aktiv");
             Forward_BT.SetActive(false);
             Backward_BT.SetActive(false);
             yield return new WaitForSeconds(2f);

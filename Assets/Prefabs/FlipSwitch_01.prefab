@@ -545,20 +545,31 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4347569766702484796}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f796d0f393babb843b7042a592ae4586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Textfield: {fileID: 0}
   Needle: {fileID: 0}
-  snapAcitve: 1
   TagetArea: 35
   TagetRange: 10
   AlwaysAktive: 1
   onSolved:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4211315372789538677
 MonoBehaviour:
   m_ObjectHideFlags: 0

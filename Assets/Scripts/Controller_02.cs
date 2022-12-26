@@ -2,25 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
+using System;
 
 public class Controller_02 : MonoBehaviour
 {
-    [SerializeField] GameObject Holo_Area01;
     [SerializeField] GameObject Holo_Area02;
+    [SerializeField] GameObject Holo_Area03;
 
     [SerializeField] GameObject Text01;
     [SerializeField] GameObject Text02;
+    [SerializeField] TMP_Text Text02_L;
+    [SerializeField] TMP_Text Text02_T;
     [SerializeField] GameObject Text03;
     [SerializeField] GameObject Text04;
+    [SerializeField] TMP_Text Text04_A;
     [SerializeField] GameObject Text05;
+    [SerializeField] TMP_Text Text05_T;
     [SerializeField] GameObject Text06;
     [SerializeField] GameObject Text07;
 
-    [SerializeField] GameObject Button01;
-    [SerializeField] GameObject Button02;
-
     [SerializeField] GameObject Switch01;
     [SerializeField] GameObject Switch02;
+    [SerializeField] GameObject Switch03;
+    [SerializeField] GameObject Switch04;
+
+    [SerializeField] GameObject Forward_BT;
+    [SerializeField] GameObject Backward_BT;
 
     [SerializeField] GameObject PipeHole;
     [SerializeField] GameObject TankFront;
@@ -28,23 +36,21 @@ public class Controller_02 : MonoBehaviour
     [SerializeField] GameObject Schacht;
     [SerializeField] GameObject Sinkboden;
 
-    [SerializeField] GameObject WaterAni;
-    [SerializeField] GameObject Brew01;
-    [SerializeField] GameObject Bubbles;
+    [SerializeField] GameObject Fluid_P2;
+    [SerializeField] GameObject Brew02;
+    [SerializeField] GameObject Bubbles02;
     [SerializeField] Material BrewMat;
-
+    private int i = 0;
     private int Default;
     public int HighlightLayer = 6;
-
-    // Wait Time between actions
-    public float waitTime = 5f;
 
     // Counter Dependence
     private float count = 0;
     private float MaxCount = 2;
-    private bool b1 = false;
-    private bool b2 = false;
     private bool s1 = false;
+    private bool s2 = false;
+    private bool s3 = false;
+    private bool s4 = false;
 
 
     // moveToPosition
@@ -64,7 +70,7 @@ public class Controller_02 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startPosition = Brew01.transform.position; //for moveToPosition
+        startPosition = Brew02.transform.position; //for moveToPosition
     }
 
     // Update is called once per frame
@@ -75,18 +81,25 @@ public class Controller_02 : MonoBehaviour
             Inside.transform.Rotate(0, -rotationSpeed, 0, Space.World);
         }
 
-        if (moveTowards == true && onFinish == false)
+        if (moveTowards == true && onFinish == false) // Move To Positin UP
         {
             float step = speed * Time.deltaTime;
-            Brew01.transform.position = Vector3.MoveTowards(Brew01.transform.position, targetPosition, step);
-            if(Vector3.Distance(Brew01.transform.position, startPosition) <0.001)
+            Brew02.transform.position = Vector3.MoveTowards(Brew02.transform.position, targetPosition, step);
+            if(Vector3.Distance(Brew02.transform.position, startPosition) <0.001)
                 onFinish = true;
+        }
+        if (moveTowards == false && onFinish == true) // Move To Positin DOWN
+        {
+            float step = speed * Time.deltaTime;
+            Brew02.transform.position = Vector3.MoveTowards(targetPosition, Brew02.transform.position, step);
+            if (Vector3.Distance(targetPosition, Brew02.transform.position) < 0.001)
+                onFinish = false;
         }
     }
 
     public void StepOutOfHolo()
     {
-        Holo_Area01.SetActive(true);
+        Holo_Area02.SetActive(true);
         Text01.SetActive(false);
         Text02.SetActive(false);
         Text03.SetActive(false);
@@ -98,130 +111,238 @@ public class Controller_02 : MonoBehaviour
 
     public void Step00()
     {
-        StartCoroutine(Step00_());
+        Debug.LogError("Step00 is aktiv");
+        Text01.SetActive(true);
+        Holo_Area02.SetActive(false);
+ 
+        StartCoroutine(WaitButton());
+        Invoke("ForwardBT", 2f);
+        i = 0;
     }
 
-    IEnumerator Step00_()
+    public void Step01()
     {
-        Text01.SetActive(true);
-        Holo_Area01.SetActive(false);
-        yield return new WaitForSecondsRealtime(waitTime);
+        Debug.LogError("Step01 is aktiv");
         Text01.SetActive(false);
         Text02.SetActive(true);
-        Button01.layer = HighlightLayer;
 
         Switch01.layer = HighlightLayer;
+        Switch02.layer = HighlightLayer;
+        Switch01.GetComponent<CheckRotation>().enabled = true;
+        Switch02.GetComponent<CheckRotation>().enabled = true;
+        //Button Backward and Index Number
+        StartCoroutine(WaitButton());
+        i = 1;
     }
 
-
-    public void Step01() // Button 1
+    public void Step02() // Switch 1 Läutern
     {
-        Button01.layer = Default;
+        Debug.LogError("Step02 is aktiv");
+        Switch01.layer = default;
         PipeHole.SetActive(false);
-        WaterAni.SetActive(true);
+        Fluid_P2.SetActive(true);
+        Brew02.SetActive(true);
         moveTowards = true;
-        BrewMat.SetColor("DeepColor", new Color(224, 129, 0, 255));
-        BrewMat.SetColor("_WaterColorShallow", new Color(152, 117, 28, 154));
-        BrewMat.SetColor("_WaterColorDeep", new Color(84, 45, 4, 253));
-        if (b1 == false)
-        {
-            b1 = true;
-            Counter();
-        }
-            
-    }
-
-    public void Step02() // Switch 1
-    {
-        Switch01.layer = Default;
-        Bubbles.SetActive(true);
+        //BrewMat.SetColor("DeepColor", new Color(224, 129, 0, 255));
+        //BrewMat.SetColor("_WaterColorShallow", new Color(152, 117, 28, 154));
+        //BrewMat.SetColor("_WaterColorDeep", new Color(84, 45, 4, 253));
         if (s1 == false)
         {
             s1 = true;
-            Counter();
+            Counter01();
         }
+        //Deaktivate Switch
+        Switch01.GetComponent<CheckRotation>().enabled = false;
+        Text02_L.fontStyle = FontStyles.Strikethrough;
+        //Index Number
+        i = 2;
     }
 
-    public void Step03()
+    public void Step03() // Switch 2 Temp
     {
-        StartCoroutine(Step03_());
+        Debug.LogError("Step03 is aktiv");
+        Switch02.layer = Default;
+        Bubbles02.SetActive(true);
+        if (s2 == false)
+        {
+            s2 = true;
+            Counter01();
+        }
+        //Deaktivate Switch
+        Switch02.GetComponent<CheckRotation>().enabled = false;
+        Text02_T.fontStyle = FontStyles.Strikethrough;
+        //Index Number
+        i = 3;
     }
-    public IEnumerator Step03_() // Counter Finish
+
+    public void Step04() // Counter01 Finish
     {
+        Debug.LogError("Step04 is aktiv");
         Text02.SetActive(false);
         Text03.SetActive(true);
+        TankFront.SetActive(false);
         Sinkboden.layer = HighlightLayer;
-        PipeHole.SetActive(true);
-        yield return new WaitForSecondsRealtime(waitTime);
-        Sinkboden.layer = Default;
-        Button02.layer = HighlightLayer;
-        Switch02.layer = HighlightLayer;
+        //Button Backward and Index Number
+        StartCoroutine(WaitButton());
+        Invoke("ForwardBT", 2f);
+        i = 4;
+    }
 
-    }
-    public void Step04()
-    {
-        StartCoroutine(Step04_());
-    }
-    public IEnumerator Step04_() // Counter Finish
-    {
-        Text02.SetActive(false);
-        Text03.SetActive(true);
-        PipeHole.SetActive(true);
-
-        yield return new WaitForSecondsRealtime(waitTime);
-        Text03.SetActive(false);
-        Text04.SetActive(true);
-        Button02.layer = HighlightLayer;
-    }
     public void Step05()
     {
-        StartCoroutine(Step05_());
+        PipeHole.SetActive(true);
+        Debug.LogError("Step05 is aktiv");
+        Text03.SetActive(false);
+        Text04.SetActive(true);
+        Sinkboden.layer = Default;
+
+
+        //Aktivate Switch
+        Switch03.layer = HighlightLayer;
+        Switch03.GetComponent<CheckRotation>().enabled = true;
+
+        //Button Backward and Index Number
+        StartCoroutine(WaitButton());
+        i = 5;
     }
-    public IEnumerator Step05_() // Button 2
+    public void Step06() // Switch 3 Abpumpen
     {
-        Holo_Area01.SetActive(false);
-        TankFront.SetActive(false);
-        Button02.layer = Default;
+        Debug.LogError("Step06 is aktiv");
+        Switch03.layer = Default;
+
+        //Deaktivate Switch
+        Switch03.GetComponent<CheckRotation>().enabled = false;
+        Text04_A.fontStyle = FontStyles.Strikethrough;
+        //Index Number
+        StartCoroutine(WaitButton());
+        Invoke("ForwardBT", 2f);
+        i = 6;
+    }
+    public void Step07()
+    {
+        Debug.LogError("Step07 is aktiv");
         Text04.SetActive(false);
         Text05.SetActive(true);
-        yield return new WaitForSecondsRealtime(waitTime);
+        //Aktivate Switch
+        Switch04.layer = HighlightLayer;
+        Switch04.GetComponent<CheckRotation>().enabled = true;
+    }
+
+
+    public void Step08() // Switch 4 Austrebern
+    {
+        Debug.LogError("Step08 is aktiv");
+        Schacht.layer = HighlightLayer;
+        Switch04.layer = Default;
+        rotate = true;
+
+        //fluid go down
+        //Deaktivate Switch
+        Switch04.GetComponent<CheckRotation>().enabled = false;
+        Text05_T.fontStyle = FontStyles.Strikethrough;
+        //Button Backward and Index Number
+        StartCoroutine(WaitButton());
+        Invoke("ForwardBT", 2f);
+        i = 8;
+    }
+    public void Step09() // 
+    {
+        Debug.LogError("Step09 is aktiv");
         Text05.SetActive(false);
         Text06.SetActive(true);
-        Switch02.layer = HighlightLayer;
-    }
-
-    public void Step06()
-    {
-        StartCoroutine(Step06_());
-    }
-    public IEnumerator Step06_() // Switch 2
-    {
-        rotate = true;
-        Text06.SetActive(false);
-        yield return new WaitForSecondsRealtime(waitTime);
-
-        //hier
-        Schacht.layer = HighlightLayer;
-
-        yield return new WaitForSecondsRealtime(waitTime);
         Schacht.layer = Default;
+        TankFront.SetActive(true);
+        Bubbles02.SetActive(false);
+        Brew02.SetActive(false);
+        rotate = false;
+
+        //Buttons and Index Number
+        StartCoroutine(WaitButton());
+        Invoke("ForwardBT", 2f);
+        i = 9;
+    }
+
+    public void Step10()
+    {
+        Debug.LogError("Step10 is aktiv");
+        Text06.SetActive(false);
         Text07.SetActive(true);
         Holo_Area02.SetActive(true);
-        TankFront.SetActive(true);
+        //Button Backward and Index Number
+        StartCoroutine(WaitButton());
+        i = 10;
 
-        Bubbles.SetActive(false);
-        Brew01.SetActive(false);
-        rotate = false;
     }
 
 
 
-    public void Counter()
+    public void Counter01()
     {
         count++;
         if (count == MaxCount)
         {
-            Step03();
+            Step04();
         }
+    }
+
+    public void forward()
+    {
+        Debug.LogError("Forward is aktiv");
+        Action[] steps = new Action[]{
+                Step00,
+                Step01,
+                Step02,
+                Step03,
+                Step04,
+                Step05,
+                Step06,
+                Step07,
+                Step08,
+                Step09,
+                Step10
+            };
+        i++;
+        steps[i]();
+    }
+    public void backward()
+    {
+        Debug.LogError("Backward is aktiv");
+        Action[] steps = new Action[]{
+                Step00,
+                Step01,
+                Step02,
+                Step03,
+                Step04,
+                Step05,
+                Step06,
+                Step07,
+                Step08,
+                Step09,
+            };
+
+        Text01.SetActive(false);
+        Text02.SetActive(false);
+        Text03.SetActive(false);
+        Text04.SetActive(false);
+        Text05.SetActive(false);
+        Text06.SetActive(false);
+        Text07.SetActive(false);
+        i--;
+        steps[i]();
+    }
+    IEnumerator WaitButton()
+    {
+        Debug.LogError("WaitButton is aktiv");
+        Forward_BT.SetActive(false);
+        Backward_BT.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        if (i > 0 && i < 10)
+        {
+            Backward_BT.SetActive(true);
+        }
+    }
+    private void ForwardBT()
+    {
+        Forward_BT.SetActive(true);
     }
 }
