@@ -22,8 +22,6 @@ namespace Oculus.Interaction
         [SerializeField] GameObject Text05;
         [SerializeField] GameObject Text06;
 
-        [SerializeField] GameObject Stammwuerze;
-
         [SerializeField] GameObject Forward_BT;
         [SerializeField] GameObject Backward_BT;
 
@@ -31,7 +29,6 @@ namespace Oculus.Interaction
         [SerializeField] GameObject Switch02;
 
         [SerializeField] GameObject PipeHole;
-        [SerializeField] GameObject TankHole;
         [SerializeField] GameObject TankFront;
 
         [SerializeField] GameObject WaterAni04;
@@ -110,7 +107,6 @@ namespace Oculus.Interaction
             //Debug.LogError("Step01 is aktiv");
             Text01.SetActive(false);
             Text02.SetActive(true);
-            TankHole.SetActive(false);
 
             Switch01.layer = HighlightLayer;
             Switch01.GetComponent<CheckRotation>().enabled = true;
@@ -120,9 +116,10 @@ namespace Oculus.Interaction
         }
 
 
-        public void Step02() // Switch01 Temp
+        public void Step02() // Switch01 Pumpe
         {
             //Debug.LogError("Step02 is aktiv");
+            TankFront.SetActive(false);
             Switch01.layer = Default;
             Switch01.GetComponent<CheckRotation>().enabled = false;
 
@@ -159,14 +156,20 @@ namespace Oculus.Interaction
             Switch02.layer = Default;
             Switch02.GetComponent<CheckRotation>().enabled = false;
             Text04_P.fontStyle = FontStyles.Strikethrough;
+
+            //Brew go Down, Kegel go down 
+
             //Button Backward and Index Number
-            i = 5;
-            StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
+            i = 5;
+
         }
 
         public void Step06() // 
         {
+            // Deaktivate Brew, Kegel
+            TankFront.SetActive(true);
+
             //Debug.LogError("Step04 is aktiv");
             Text04.SetActive(false);
             Text05.SetActive(true);
@@ -221,20 +224,8 @@ namespace Oculus.Interaction
             Text02.SetActive(false);
             Text03.SetActive(false);
             Text04.SetActive(false);
-            if (i > 5)
-            {
-                PipeHole.SetActive(true);
-                TankHole.SetActive(true);
-                Particels04.SetActive(false);
-                WaterAni04.SetActive(false);
-
-                s1 = false;
-                s2 = false;
-            }
-            if (i == 8)
-            {
-                TankFront.SetActive(true);
-            }
+            Text05.SetActive(false);
+            Text06.SetActive(false);
             i--;
             steps[i]();
         }

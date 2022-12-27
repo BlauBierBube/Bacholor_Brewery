@@ -74,7 +74,6 @@ namespace Oculus.Interaction
 
             Text02_F.fontStyle = FontStyles.Strikethrough;
             Invoke("ForwardBT", 2f);
-            i = 2;
         }
 
 
@@ -85,7 +84,7 @@ namespace Oculus.Interaction
             //Buttons and Index Number
             StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
-            i = 3;
+            i = 2;
         }
 
         public void Step04() // 
@@ -95,7 +94,7 @@ namespace Oculus.Interaction
             //Debug.LogError("Step04 is aktiv");
             StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
-            i = 4;
+            i = 3;
         }
 
 
@@ -104,7 +103,6 @@ namespace Oculus.Interaction
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
                 Step03,
                 Step04
             };
@@ -116,7 +114,6 @@ namespace Oculus.Interaction
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
                 Step03
             };
 

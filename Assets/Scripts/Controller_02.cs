@@ -133,6 +133,8 @@ public class Controller_02 : MonoBehaviour
         //Button Backward and Index Number
         StartCoroutine(WaitButton());
         i = 1;
+        if (s1 && s2 == true)
+            Step04();
     }
 
     public void Step02() // Switch 1 Läutern
@@ -146,16 +148,16 @@ public class Controller_02 : MonoBehaviour
         //BrewMat.SetColor("DeepColor", new Color(224, 129, 0, 255));
         //BrewMat.SetColor("_WaterColorShallow", new Color(152, 117, 28, 154));
         //BrewMat.SetColor("_WaterColorDeep", new Color(84, 45, 4, 253));
+
+        //Deaktivate Switch
+        Switch01.GetComponent<CheckRotation>().enabled = false;
+        Text02_L.fontStyle = FontStyles.Strikethrough;
+        //Index Number
         if (s1 == false)
         {
             s1 = true;
             Counter01();
         }
-        //Deaktivate Switch
-        Switch01.GetComponent<CheckRotation>().enabled = false;
-        Text02_L.fontStyle = FontStyles.Strikethrough;
-        //Index Number
-        i = 2;
     }
 
     public void Step03() // Switch 2 Temp
@@ -163,35 +165,43 @@ public class Controller_02 : MonoBehaviour
         Debug.LogError("Step03 is aktiv");
         Switch02.layer = Default;
         Bubbles02.SetActive(true);
+
+        //Deaktivate Switch
+        Switch02.GetComponent<CheckRotation>().enabled = false;
+        Text02_T.fontStyle = FontStyles.Strikethrough;
+        //Index Number
         if (s2 == false)
         {
             s2 = true;
             Counter01();
         }
-        //Deaktivate Switch
-        Switch02.GetComponent<CheckRotation>().enabled = false;
-        Text02_T.fontStyle = FontStyles.Strikethrough;
-        //Index Number
-        i = 3;
     }
 
     public void Step04() // Counter01 Finish
     {
         Debug.LogError("Step04 is aktiv");
-        Text02.SetActive(false);
-        Text03.SetActive(true);
-        TankFront.SetActive(false);
-        Sinkboden.layer = HighlightLayer;
+
+
         //Button Backward and Index Number
-        StartCoroutine(WaitButton());
         Invoke("ForwardBT", 2f);
-        i = 4;
     }
 
     public void Step05()
     {
-        PipeHole.SetActive(true);
         Debug.LogError("Step05 is aktiv");
+        Text02.SetActive(false);
+        Text03.SetActive(true);
+        TankFront.SetActive(false);
+        Sinkboden.layer = HighlightLayer;
+        Invoke("ForwardBT", 2f);
+        StartCoroutine(WaitButton());
+        i = 2;
+    }
+
+    public void Step06()
+    {
+        PipeHole.SetActive(true);
+        Debug.LogError("Step06 is aktiv");
         Text03.SetActive(false);
         Text04.SetActive(true);
         Sinkboden.layer = Default;
@@ -203,35 +213,36 @@ public class Controller_02 : MonoBehaviour
 
         //Button Backward and Index Number
         StartCoroutine(WaitButton());
-        i = 5;
+        i = 3;
     }
-    public void Step06() // Switch 3 Abpumpen
+    public void Step07() // Switch 3 Abpumpen
     {
-        Debug.LogError("Step06 is aktiv");
+        Debug.LogError("Step07 is aktiv");
         Switch03.layer = Default;
 
         //Deaktivate Switch
         Switch03.GetComponent<CheckRotation>().enabled = false;
         Text04_A.fontStyle = FontStyles.Strikethrough;
         //Index Number
-        StartCoroutine(WaitButton());
         Invoke("ForwardBT", 2f);
-        i = 6;
+        i = 4;
     }
-    public void Step07()
+    public void Step08()
     {
-        Debug.LogError("Step07 is aktiv");
+        Debug.LogError("Step08 is aktiv");
         Text04.SetActive(false);
         Text05.SetActive(true);
         //Aktivate Switch
         Switch04.layer = HighlightLayer;
         Switch04.GetComponent<CheckRotation>().enabled = true;
+        StartCoroutine(WaitButton());
+        i = 5;
     }
 
 
-    public void Step08() // Switch 4 Austrebern
+    public void Step09() // Switch 4 Austrebern
     {
-        Debug.LogError("Step08 is aktiv");
+        Debug.LogError("Step09 is aktiv");
         Schacht.layer = HighlightLayer;
         Switch04.layer = Default;
         rotate = true;
@@ -241,13 +252,13 @@ public class Controller_02 : MonoBehaviour
         Switch04.GetComponent<CheckRotation>().enabled = false;
         Text05_T.fontStyle = FontStyles.Strikethrough;
         //Button Backward and Index Number
-        StartCoroutine(WaitButton());
+
         Invoke("ForwardBT", 2f);
-        i = 8;
+        i = 6;
     }
-    public void Step09() // 
+    public void Step10() // 
     {
-        Debug.LogError("Step09 is aktiv");
+        Debug.LogError("Step10 is aktiv");
         Text05.SetActive(false);
         Text06.SetActive(true);
         Schacht.layer = Default;
@@ -259,18 +270,18 @@ public class Controller_02 : MonoBehaviour
         //Buttons and Index Number
         StartCoroutine(WaitButton());
         Invoke("ForwardBT", 2f);
-        i = 9;
+        i = 7;
     }
 
-    public void Step10()
+    public void Step11()
     {
-        Debug.LogError("Step10 is aktiv");
+        Debug.LogError("Step11 is aktiv");
         Text06.SetActive(false);
         Text07.SetActive(true);
-        Holo_Area02.SetActive(true);
+        Holo_Area03.SetActive(true);
         //Button Backward and Index Number
         StartCoroutine(WaitButton());
-        i = 10;
+        i = 8;
 
     }
 
@@ -291,15 +302,13 @@ public class Controller_02 : MonoBehaviour
         Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
-                Step03,
-                Step04,
                 Step05,
                 Step06,
                 Step07,
                 Step08,
                 Step09,
-                Step10
+                Step10,
+                Step11
             };
         i++;
         steps[i]();
@@ -310,14 +319,12 @@ public class Controller_02 : MonoBehaviour
         Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
-                Step03,
-                Step04,
                 Step05,
                 Step06,
                 Step07,
                 Step08,
                 Step09,
+                Step10
             };
 
         Text01.SetActive(false);
@@ -336,10 +343,7 @@ public class Controller_02 : MonoBehaviour
         Forward_BT.SetActive(false);
         Backward_BT.SetActive(false);
         yield return new WaitForSeconds(2f);
-        if (i > 0 && i < 10)
-        {
-            Backward_BT.SetActive(true);
-        }
+        Backward_BT.SetActive(true);
     }
     private void ForwardBT()
     {

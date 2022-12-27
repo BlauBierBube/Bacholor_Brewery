@@ -3,26 +3,11 @@ guid: f971c1d070a212d4e97b52ee2bfe1ad1
 ModelImporter:
   serializedVersion: 22102
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Bricks_Roof
-    second: {fileID: 2100000, guid: 2c948d820db2e894ca9eb2527a3de829, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Room_01_Roof_01
-    second: {fileID: 2100000, guid: 55a9a5d9f448ea44097c8494a2d63d9f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Room_01_Roof_02
-    second: {fileID: 2100000, guid: 0ee7c5a91e631604094a61f7c404a455, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
-    materialName: 1
-    materialSearch: 2
+    materialName: 0
+    materialSearch: 1
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
@@ -62,7 +47,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1

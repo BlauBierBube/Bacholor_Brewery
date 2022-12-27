@@ -129,7 +129,6 @@ namespace Oculus.Interaction
                 b1 = true;
                 Counter();
             }
-            i = 2;
         }
 
 
@@ -148,8 +147,6 @@ namespace Oculus.Interaction
                 s1 = true;
                 Counter();
             }
-
-            i = 3;
         }
 
         public void Step04() // Count01 Finish
@@ -157,8 +154,8 @@ namespace Oculus.Interaction
             //Debug.LogError("Step04 is aktiv");
             StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
-            i = 4;
         }
+
         public void Step05() // 
         {
             //Aus Step03 deaktivieren Ani..
@@ -171,7 +168,7 @@ namespace Oculus.Interaction
             Switch02.GetComponent<CheckRotation>().enabled = true;
             //Index Number
             StartCoroutine(WaitButton());
-            i = 5;
+            i = 2;
         }
         
         public void Step06() // Switch02 Temp
@@ -179,9 +176,9 @@ namespace Oculus.Interaction
             //Debug.LogError("Step06 is aktiv");
             Switch02.layer = Default;
             Switch02.GetComponent<CheckRotation>().enabled = false;
+            Text03_T.fontStyle = FontStyles.Strikethrough;
             //Button and Index Number
             Invoke("ForwardBT", 2f);
-            i = 6;
         }
         public void Step07() // 
         {
@@ -191,7 +188,7 @@ namespace Oculus.Interaction
             //Buttons and Index Number
             StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
-            i = 7;
+            i = 3;
         }
         public void Step08()
         {
@@ -201,7 +198,7 @@ namespace Oculus.Interaction
 
             //Button and Index Number
             StartCoroutine(WaitButton());
-            i = 8;
+            i = 4;
         }
         public void Counter()
         {
@@ -218,11 +215,7 @@ namespace Oculus.Interaction
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
-                Step03,
-                Step04,
                 Step05,
-                Step06,
                 Step07,
                 Step08
             };
@@ -234,11 +227,7 @@ namespace Oculus.Interaction
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
-                Step03,
-                Step04,
                 Step05,
-                Step06,
                 Step07
             };
 

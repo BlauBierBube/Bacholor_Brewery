@@ -24,10 +24,6 @@ namespace Oculus.Interaction
 
         [SerializeField] GameObject Switch01;
 
-        [SerializeField] GameObject PipeHole;
-        [SerializeField] GameObject TankHole;
-
-        [SerializeField] GameObject WaterAni04;
 
         private int i = 0;
         private int Default;
@@ -77,7 +73,6 @@ namespace Oculus.Interaction
 
             Text02_T.fontStyle = FontStyles.Strikethrough;
             //Button Backward and Index Number
-            i = 2;
             Invoke("ForwardBT", 2f);
         }
         public void Step03()
@@ -87,7 +82,7 @@ namespace Oculus.Interaction
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
-            i = 3;
+            i = 2;
         }
 
         public void Step04()
@@ -97,7 +92,7 @@ namespace Oculus.Interaction
             Holo_Area06.SetActive(true);
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
-            i = 4;
+            i = 3;
         }
 
 
@@ -106,7 +101,6 @@ namespace Oculus.Interaction
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
                 Step03,
                 Step04
             };
@@ -118,7 +112,6 @@ namespace Oculus.Interaction
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
                 Step03
             };
 

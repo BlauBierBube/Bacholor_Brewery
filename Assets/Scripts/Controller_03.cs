@@ -28,9 +28,9 @@ namespace Oculus.Interaction
         [SerializeField] GameObject Button01;
         [SerializeField] GameObject Switch01;
 
-        [SerializeField] GameObject PipeHole;
-        [SerializeField] GameObject TankHole;
-        [SerializeField] GameObject TankFront;
+        [SerializeField] GameObject PipeHole03;
+        [SerializeField] GameObject TankHole03;
+        [SerializeField] GameObject TankFront03;
 
         [SerializeField] GameObject Hopfen;
         [SerializeField] GameObject WaterAni03;
@@ -102,7 +102,7 @@ namespace Oculus.Interaction
             //Debug.LogError("Step01 is aktiv");
             Text01.SetActive(false);
             Text02.SetActive(true);
-            TankHole.SetActive(false);
+
             Button01.layer = HighlightLayer;
             Switch01.layer = HighlightLayer;
             Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = true;
@@ -110,6 +110,8 @@ namespace Oculus.Interaction
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
             i = 1;
+            if (b1 && s1 == true)
+                Step04();
         }
 
 
@@ -119,7 +121,7 @@ namespace Oculus.Interaction
             Button01.layer = Default;
             Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = false;
 
-            TankHole.SetActive(false);
+            TankHole03.SetActive(false);
             Hopfen.SetActive(true);
 
             Text02_H.fontStyle = FontStyles.Strikethrough;
@@ -130,7 +132,6 @@ namespace Oculus.Interaction
                 b1 = true;
                 Counter();
             }
-            i = 2;
         }
 
 
@@ -138,55 +139,63 @@ namespace Oculus.Interaction
         {
             //Debug.LogError("Step03 is aktiv");
             Bubbles03.SetActive(true);
+            TankFront03.SetActive(false);
             Switch01.layer = Default;
             Switch01.GetComponent<CheckRotation>().enabled = false;
             Text02_T.fontStyle = FontStyles.Strikethrough;
-            //BrewMat Yellow #E08100
-            //BrewMat.SetColor("DeepColor", new Color(224, 129, 0, 255));
-            //BrewMat.SetColor("_WaterColorShallow", new Color(152, 117, 28, 154));
-            //BrewMat.SetColor("_WaterColorDeep", new Color(84, 45, 4, 253));
+
 
             if (s1 == false)
             {
                 s1 = true;
                 Counter();
             }
-            i = 3;
         }
 
         public void Step04() // Couter01 Finish
         {
             //Debug.LogError("Step04 is aktiv");
-            Text02.SetActive(false);
-            Text03.SetActive(true);
-
-
 
             Invoke("ForwardBT",2f);
-            i = 4;
         }
-        public void Step05() // Stammwürze
+
+        public void Step05()
         {
-            TankHole.SetActive(true);
-            Hopfen.SetActive(false);
             //Debug.LogError("Step05 is aktiv");
+            Text02.SetActive(false);
+            Text03.SetActive(true);
+            TankHole03.SetActive(true);
+            TankFront03.SetActive(true);
+            Hopfen.SetActive(false);
+            //Button and Index Number
+            StartCoroutine(WaitButton());
+            Invoke("ForwardBT", 2f);
+            i = 2;
+        }
+
+        public void Step06() // Stammwürze
+        {
+
+            Stammwuerze.layer = HighlightLayer;
+            //Debug.LogError("Step06 is aktiv");
             StartCoroutine(ScaleObject(Stammwuerze, 1f));
 
 
             //Button and Index Number
             Invoke("ForwardBT", 2f);
-            i = 5;
+            i = 3;
         }
-        public void Step06()
+        public void Step07()
         {
-            //Debug.LogError("Step06 is aktiv");
+            Stammwuerze.layer = Default;
+            //Debug.LogError("Step07 is aktiv");
             Text03.SetActive(false);
             Text04.SetActive(true);
-            TankFront.SetActive(true);
+            TankFront03.SetActive(true);
             Brew03.SetActive(false);
             //Button and Index Number
             StartCoroutine(WaitButton());
-            i = 6;
+            i = 4;
         }
         
         public void Counter()
@@ -204,11 +213,9 @@ namespace Oculus.Interaction
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
-                Step03,
-                Step04,
                 Step05,
-                Step06
+                Step06,
+                Step07
             };
             i++;
             steps[i]();
@@ -218,10 +225,9 @@ namespace Oculus.Interaction
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
-                Step03,
-                Step04,
-                Step05
+                Step05,
+                Step06,
+                Step07
             };
 
             Text01.SetActive(false);
@@ -230,8 +236,8 @@ namespace Oculus.Interaction
             Text04.SetActive(false);
             if (i > 5)
             {
-                PipeHole.SetActive(true);
-                TankHole.SetActive(true);
+                PipeHole03.SetActive(true);
+                TankHole03.SetActive(true);
                 Particels03.SetActive(false);
                 WaterAni03.SetActive(false);
                 Bubbles03.SetActive(false);
@@ -240,7 +246,7 @@ namespace Oculus.Interaction
             }
             if (i == 8)
             {
-                TankFront.SetActive(true);
+                TankFront03.SetActive(true);
             }
             i--;
             steps[i]();

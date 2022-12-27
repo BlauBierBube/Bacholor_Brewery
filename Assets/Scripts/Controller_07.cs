@@ -115,14 +115,13 @@ namespace Oculus.Interaction
             Switch01.GetComponent<CheckRotation>().enabled = false;
             PipeHole.SetActive(false);
             WaterAni07.SetActive(true);
-            Text02_T.fontStyle = FontStyles.Strikethrough;
+            Text02_U.fontStyle = FontStyles.Strikethrough;
 
             if (s1 == false)
             {
                 s1 = true;
                 Counter();
             }
-            i = 2;
         }
 
 
@@ -141,30 +140,36 @@ namespace Oculus.Interaction
                 s2 = true;
                 Counter();
             }
-
-            i = 3;
         }
 
         public void Step04() // Count01 Finish
         {
+
+            //Debug.LogError("Step04 is aktiv");
+
+            Invoke("ForwardBT", 2f);
+        }
+
+        public void Step05()
+        {
             Text02.SetActive(false);
             Text03.SetActive(true);
-            //Debug.LogError("Step04 is aktiv");
+            //Debug.LogError("Step05 is aktiv");
             StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
-            i = 4;
+            i = 2;
         }
-        public void Step05() // 
+        public void Step06() // 
         {
             //Aus Step03 deaktivieren Ani..
 
-            //Debug.LogError("Step05 is aktiv");
+            //Debug.LogError("Step06 is aktiv");
             Text03.SetActive(false);
             Text04.SetActive(true);
             //Index Number
             StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
-            i = 5;
+            i = 3;
         }
         public void Counter()
         {
@@ -181,9 +186,6 @@ namespace Oculus.Interaction
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
-                Step03,
-                Step04,
                 Step05
             };
             i++;
@@ -193,10 +195,7 @@ namespace Oculus.Interaction
         {
             Action[] steps = new Action[]{
                 Step00,
-                Step01,
-                Step02,
-                Step03,
-                Step04
+                Step01
             };
 
             Text01.SetActive(false);
