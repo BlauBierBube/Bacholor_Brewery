@@ -8,7 +8,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
-
+#if (UNITY_EDITOR) 
 public class ComponentsCopier : EditorWindow
 {
 
@@ -36,3 +36,4 @@ public class ComponentsCopier : EditorWindow
     }
 
 }
+#endif

@@ -1,0 +1,338 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!200 &20000000
+ShaderVariantCollection:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NewShaderVariants
+  m_Shaders:
+  - first: {fileID: 66, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 103, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: _SUNDISK_SIMPLE
+        passType: 0
+  - first: {fileID: 9000, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9001, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9002, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9003, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9004, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9007, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9101, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 9103, guid: 0000000000000000f000000000000000, type: 0}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: d6dae50ee9e1bfa4db75f19f99355220, type: 3}
+    second:
+      variants:
+      - keywords: _OUTPUT_DEPTH
+        passType: 0
+  - first: {fileID: 4800000, guid: ec9fec698a3456d4fb18cf8bacb7a2bc, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: _TONEMAP_ACES
+        passType: 0
+  - first: {fileID: 4800000, guid: e7857e9d0c934dc4f83f270f8447b006, type: 3}
+    second:
+      variants:
+      - keywords: _BLOOM_LQ _HDR_GRADING
+        passType: 0
+      - keywords: _HDR_GRADING
+        passType: 0
+  - first: {fileID: 4800000, guid: 5f1864addb451f54bae8c86d230f736e, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
+        passType: 8
+      - keywords: 
+        passType: 11
+      - keywords: _EMISSION
+        passType: 11
+      - keywords: _METALLICSPECGLOSSMAP
+        passType: 11
+      - keywords: 
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _ENVIRONMENTREFLECTIONS_OFF
+          _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION
+          _SCREEN_SPACE_OCCLUSION _SHADOWS_SOFT _SPECULARHIGHLIGHTS_OFF
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS
+          _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP _PARALLAXMAP _REFLECTION_PROBE_BLENDING
+          _REFLECTION_PROBE_BOX_PROJECTION _SCREEN_SPACE_OCCLUSION _SHADOWS_SOFT
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS
+          _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP _REFLECTION_PROBE_BLENDING
+          _REFLECTION_PROBE_BOX_PROJECTION _SCREEN_SPACE_OCCLUSION _SHADOWS_SOFT
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS
+          _METALLICSPECGLOSSMAP _NORMALMAP _PARALLAXMAP _REFLECTION_PROBE_BLENDING
+          _REFLECTION_PROBE_BOX_PROJECTION _SCREEN_SPACE_OCCLUSION _SHADOWS_SOFT
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS
+          _METALLICSPECGLOSSMAP _NORMALMAP _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION
+          _SCREEN_SPACE_OCCLUSION _SHADOWS_SOFT
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS
+          _NORMALMAP _PARALLAXMAP _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION
+          _SCREEN_SPACE_OCCLUSION _SHADOWS_SOFT
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS
+          _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SCREEN_SPACE_OCCLUSION
+          _SHADOWS_SOFT
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS _NORMALMAP
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS _NORMALMAP _PARALLAXMAP
+        passType: 13
+      - keywords: FOG_LINEAR _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS
+          _MAIN_LIGHT_SHADOWS _METALLICSPECGLOSSMAP _NORMALMAP _REFLECTION_PROBE_BLENDING
+          _REFLECTION_PROBE_BOX_PROJECTION _SCREEN_SPACE_OCCLUSION _SHADOWS_SOFT
+        passType: 13
+      - keywords: FOG_LINEAR _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS
+          _MAIN_LIGHT_SHADOWS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION
+          _SCREEN_SPACE_OCCLUSION _SHADOWS_SOFT
+        passType: 13
+      - keywords: FOG_LINEAR _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS
+        passType: 13
+      - keywords: FOG_LINEAR _ADDITIONAL_LIGHTS _MAIN_LIGHT_SHADOWS _NORMALMAP
+        passType: 13
+      - keywords: _NORMALMAP
+        passType: 13
+      - keywords: _NORMALMAP _PARALLAXMAP
+        passType: 13
+  - first: {fileID: 4800000, guid: fe393ace9b354375a9cb14cdbbc28be4, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+  - first: {fileID: 4800000, guid: 0849e84e3d62649e8882e9d6f056a017, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 0
+      - keywords: _SOURCE_DEPTH
+        passType: 0
+      - keywords: _SOURCE_DEPTH_NORMALS
+        passType: 0
+  - first: {fileID: -6465566751694194690, guid: 022037c9a973662468351f8a2fe35f72, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
+        passType: 8
+      - keywords: 
+        passType: 11
+      - keywords: 
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS
+          _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SCREEN_SPACE_OCCLUSION
+          _SHADOWS_SOFT
+        passType: 13
+      - keywords: FOG_LINEAR _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS
+          _MAIN_LIGHT_SHADOWS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION
+          _SCREEN_SPACE_OCCLUSION _SHADOWS_SOFT
+        passType: 13
+  - first: {fileID: -6465566751694194690, guid: 8c5b146a1c3bc114ba79ccbd6219e713, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
+        passType: 8
+      - keywords: 
+        passType: 11
+      - keywords: 
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS
+          _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SCREEN_SPACE_OCCLUSION
+          _SHADOWS_SOFT
+        passType: 13
+  - first: {fileID: -6465566751694194690, guid: 980797b855a281d4c955b96ffe40fbdf, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
+        passType: 8
+      - keywords: 
+        passType: 11
+      - keywords: 
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS
+          _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SCREEN_SPACE_OCCLUSION
+          _SHADOWS_SOFT
+        passType: 13
+  - first: {fileID: -6465566751694194690, guid: 1cda6f44080879f47a6d2e4b7f223494, type: 3}
+    second:
+      variants:
+      - keywords: FOG_LINEAR
+        passType: 0
+  - first: {fileID: -6465566751694194690, guid: 8fd4c3bf66876cf41a08328b83d435d8, type: 3}
+    second:
+      variants:
+      - keywords: FOG_LINEAR
+        passType: 0
+  - first: {fileID: -6465566751694194690, guid: 74d4b830fb1c333469d12ad5a7f12eb7, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+  - first: {fileID: -6465566751694194690, guid: 9ac72c3fdd6625141ba8db54f28d068b, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
+        passType: 8
+      - keywords: 
+        passType: 11
+      - keywords: 
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS
+          _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SCREEN_SPACE_OCCLUSION
+          _SHADOWS_SOFT
+        passType: 13
+  - first: {fileID: -6465566751694194690, guid: 00710bee13d1e0544b063e2c1bc9f37f, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
+        passType: 8
+      - keywords: 
+        passType: 11
+      - keywords: 
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS
+          _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SCREEN_SPACE_OCCLUSION
+          _SHADOWS_SOFT
+        passType: 13
+  - first: {fileID: -6465566751694194690, guid: 4edba5c3019be7b448599560e648c871, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
+        passType: 8
+      - keywords: 
+        passType: 13
+      - keywords: FOG_LINEAR _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS
+          _MAIN_LIGHT_SHADOWS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION
+          _SCREEN_SPACE_OCCLUSION _SHADOWS_SOFT
+        passType: 13
+  - first: {fileID: -6465566751694194690, guid: 8d9b1d38b3c2d0c4197f07e4ead5a0cc, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
+        passType: 8
+      - keywords: 
+        passType: 11
+      - keywords: 
+        passType: 13
+      - keywords: DIRLIGHTMAP_COMBINED DYNAMICLIGHTMAP_ON FOG_LINEAR LIGHTMAP_ON
+          _ADDITIONAL_LIGHTS _ADDITIONAL_LIGHT_SHADOWS _LIGHT_LAYERS _MAIN_LIGHT_SHADOWS
+          _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SCREEN_SPACE_OCCLUSION
+          _SHADOWS_SOFT
+        passType: 13
+  - first: {fileID: -6465566751694194690, guid: aee0321325fdb8b479ff4b9def98d84e, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
+        passType: 8
+      - keywords: 
+        passType: 11
+      - keywords: 
+        passType: 13
+  - first: {fileID: -6465566751694194690, guid: 33fd341a6b8b30f4dafeca54276f876c, type: 3}
+    second:
+      variants:
+      - keywords: 
+        passType: 8
+      - keywords: _CASTING_PUNCTUAL_LIGHT_SHADOW
+        passType: 8
+      - keywords: 
+        passType: 11
+      - keywords: 
+        passType: 13

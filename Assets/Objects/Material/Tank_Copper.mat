@@ -21,16 +21,19 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Tank_Copper
-  m_Shader: {fileID: -6465566751694194690, guid: 022037c9a973662468351f8a2fe35f72, type: 3}
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _METALLICSPECGLOSSMAP
+  - _NORMALMAP
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -38,7 +41,7 @@ Material:
     m_TexEnvs:
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 29aea68ecb9afb4428afca61fdde16be, type: 3}
-        m_Scale: {x: 50, y: 50}
+        m_Scale: {x: 25, y: 25}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 97d10056164b65149b8140c3125dcc7f, type: 3}
@@ -62,7 +65,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 29aea68ecb9afb4428afca61fdde16be, type: 3}
-        m_Scale: {x: 50, y: 50}
+        m_Scale: {x: 25, y: 25}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: fc377464aa7ab5a43b8124e8c83481f7, type: 3}
@@ -109,11 +112,11 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _BlendMultiply: 0
+    - _BlendMultiply: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Cull: 2
+    - _Cull: 0
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -132,7 +135,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Rim_Power: 1
-    - _Smoothness: 0.5
+    - _Smoothness: 0.8
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -144,7 +147,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BlendColor: {r: 0, g: 0, b: 0, a: 0}
+    - _BlendColor: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Rim_Color: {r: 0, g: 0, b: 0, a: 1}

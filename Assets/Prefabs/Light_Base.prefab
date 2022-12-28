@@ -295,10 +295,10 @@ Light:
   m_GameObject: {fileID: 7106220010212214370}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 4
+  m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 25
+  m_Intensity: 40
   m_Range: 15
   m_SpotAngle: 90
   m_InnerSpotAngle: 40
@@ -340,7 +340,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 0.035, y: 1}
-  m_BounceIntensity: 4
+  m_BounceIntensity: 15
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}

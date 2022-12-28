@@ -157,8 +157,6 @@ namespace Oculus.Interaction {
                 b1 = true;
                 Counter();
             }
-            StartCoroutine(ScaleObject(LiquideTop,0.5f));
-            i = 2;
         }
     
 
@@ -179,8 +177,6 @@ namespace Oculus.Interaction {
                 b2 = true;
                 Counter();
             }
-            StartCoroutine(ScaleObject(LiquideBot,2f));
-            i = 3;
         }
 
         public void Step04() // Switch 1
@@ -195,7 +191,6 @@ namespace Oculus.Interaction {
                 s1 = true;
                 Counter();
             }
-            i = 4;
         }
         public void Step05() // Counter Finish
         {
@@ -206,7 +201,6 @@ namespace Oculus.Interaction {
             TankHole.SetActive(true);
             //Button and Index Number
             Invoke("ForwardBT", 2f);
-            i = 5;
         }
         public void Step06() 
         {
@@ -217,7 +211,7 @@ namespace Oculus.Interaction {
             Switch02.GetComponent<CheckRotation>().enabled = true;
             //Button and Index Number
             StartCoroutine(WaitButton());
-            i = 6;
+            i = 2;
         }
         public void Step07() // Switch 2
         {
@@ -230,9 +224,7 @@ namespace Oculus.Interaction {
             Text04_M.fontStyle = FontStyles.Strikethrough;
             rotate = true;
             //Buttons and Index Number
-            StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
-            i = 7;
         }
         public void Step08()
         {
@@ -247,7 +239,7 @@ namespace Oculus.Interaction {
             rotate = false;
             //Button and Index Number
             StartCoroutine(WaitButton());
-            i = 8;
+            i = 3;
         }
         public void Counter()
         {
@@ -264,12 +256,7 @@ namespace Oculus.Interaction {
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
-                Step03,
-                Step04,
-                Step05,
                 Step06,
-                Step07,
                 Step08
             };
             i++;
@@ -280,13 +267,7 @@ namespace Oculus.Interaction {
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
-                Step03,
-                Step04,
-                Step05,
-                Step06,
-                Step07,
-                Step08
+                Step06
             };
         
             Text01.SetActive(false);
@@ -295,21 +276,6 @@ namespace Oculus.Interaction {
             Text04.SetActive(false);
             Text05.SetActive(false);
             Text06.SetActive(false);
-            if(i > 5)
-            {
-                PipeHole.SetActive(true);
-                TankHole.SetActive(true);
-                Particels.SetActive(false);
-                WaterAni.SetActive(false);
-                Bubbles.SetActive(false);
-                b1 = false;
-                b2 = false;
-                s1 = false;
-            }
-            if(i == 8)
-            {
-                TankFront.SetActive(true);
-            }
             i--;
             steps[i]();
         }

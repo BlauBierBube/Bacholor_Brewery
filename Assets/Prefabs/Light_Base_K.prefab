@@ -299,7 +299,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 50
-  m_Range: 8
+  m_Range: 25
   m_SpotAngle: 90
   m_InnerSpotAngle: 40
   m_CookieSize: 10
@@ -340,7 +340,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 0.035, y: 1}
-  m_BounceIntensity: 0
+  m_BounceIntensity: 4
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0.21484375, y: 20, z: 12, w: 0}

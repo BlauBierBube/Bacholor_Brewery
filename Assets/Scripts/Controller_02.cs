@@ -16,11 +16,12 @@ public class Controller_02 : MonoBehaviour
     [SerializeField] TMP_Text Text02_T;
     [SerializeField] GameObject Text03;
     [SerializeField] GameObject Text04;
-    [SerializeField] TMP_Text Text04_A;
     [SerializeField] GameObject Text05;
-    [SerializeField] TMP_Text Text05_T;
+    [SerializeField] TMP_Text Text05_A;
     [SerializeField] GameObject Text06;
+    [SerializeField] TMP_Text Text06_T;
     [SerializeField] GameObject Text07;
+    [SerializeField] GameObject Text08;
 
     [SerializeField] GameObject Switch01;
     [SerializeField] GameObject Switch02;
@@ -200,10 +201,20 @@ public class Controller_02 : MonoBehaviour
 
     public void Step06()
     {
-        PipeHole.SetActive(true);
         Debug.LogError("Step06 is aktiv");
         Text03.SetActive(false);
         Text04.SetActive(true);
+        Invoke("ForwardBT", 2f);
+        StartCoroutine(WaitButton());
+        i = 3;
+    }
+
+    public void Step07()
+    {
+        PipeHole.SetActive(true);
+        Debug.LogError("Step07 is aktiv");
+        Text04.SetActive(false);
+        Text05.SetActive(true);
         Sinkboden.layer = Default;
 
 
@@ -213,36 +224,36 @@ public class Controller_02 : MonoBehaviour
 
         //Button Backward and Index Number
         StartCoroutine(WaitButton());
-        i = 3;
+        i = 4;
     }
-    public void Step07() // Switch 3 Abpumpen
+    public void Step08() // Switch 3 Abpumpen
     {
-        Debug.LogError("Step07 is aktiv");
+        Debug.LogError("Step08 is aktiv");
         Switch03.layer = Default;
 
         //Deaktivate Switch
         Switch03.GetComponent<CheckRotation>().enabled = false;
-        Text04_A.fontStyle = FontStyles.Strikethrough;
+        Text05_A.fontStyle = FontStyles.Strikethrough;
         //Index Number
         Invoke("ForwardBT", 2f);
-        i = 4;
+        i = 5;
     }
-    public void Step08()
+    public void Step09()
     {
-        Debug.LogError("Step08 is aktiv");
-        Text04.SetActive(false);
-        Text05.SetActive(true);
+        Debug.LogError("Step09 is aktiv");
+        Text05.SetActive(false);
+        Text06.SetActive(true);
         //Aktivate Switch
         Switch04.layer = HighlightLayer;
         Switch04.GetComponent<CheckRotation>().enabled = true;
         StartCoroutine(WaitButton());
-        i = 5;
+        i = 6;
     }
 
 
-    public void Step09() // Switch 4 Austrebern
+    public void Step10() // Switch 4 Austrebern
     {
-        Debug.LogError("Step09 is aktiv");
+        Debug.LogError("Step10 is aktiv");
         Schacht.layer = HighlightLayer;
         Switch04.layer = Default;
         rotate = true;
@@ -250,17 +261,17 @@ public class Controller_02 : MonoBehaviour
         //fluid go down
         //Deaktivate Switch
         Switch04.GetComponent<CheckRotation>().enabled = false;
-        Text05_T.fontStyle = FontStyles.Strikethrough;
+        Text06_T.fontStyle = FontStyles.Strikethrough;
         //Button Backward and Index Number
 
         Invoke("ForwardBT", 2f);
-        i = 6;
+        i = 7;
     }
-    public void Step10() // 
+    public void Step11() // 
     {
-        Debug.LogError("Step10 is aktiv");
-        Text05.SetActive(false);
-        Text06.SetActive(true);
+        Debug.LogError("Step11 is aktiv");
+        Text06.SetActive(false);
+        Text07.SetActive(true);
         Schacht.layer = Default;
         TankFront.SetActive(true);
         Bubbles02.SetActive(false);
@@ -270,18 +281,18 @@ public class Controller_02 : MonoBehaviour
         //Buttons and Index Number
         StartCoroutine(WaitButton());
         Invoke("ForwardBT", 2f);
-        i = 7;
+        i = 8;
     }
 
-    public void Step11()
+    public void Step12()
     {
-        Debug.LogError("Step11 is aktiv");
+        Debug.LogError("Step12 is aktiv");
         Text06.SetActive(false);
         Text07.SetActive(true);
         Holo_Area03.SetActive(true);
         //Button Backward and Index Number
         StartCoroutine(WaitButton());
-        i = 8;
+        i = 9;
 
     }
 
@@ -308,7 +319,8 @@ public class Controller_02 : MonoBehaviour
                 Step08,
                 Step09,
                 Step10,
-                Step11
+                Step11,
+                Step12
             };
         i++;
         steps[i]();
@@ -324,7 +336,8 @@ public class Controller_02 : MonoBehaviour
                 Step07,
                 Step08,
                 Step09,
-                Step10
+                Step10,
+                Step11
             };
 
         Text01.SetActive(false);
@@ -334,6 +347,7 @@ public class Controller_02 : MonoBehaviour
         Text05.SetActive(false);
         Text06.SetActive(false);
         Text07.SetActive(false);
+        Text08.SetActive(false);
         i--;
         steps[i]();
     }
