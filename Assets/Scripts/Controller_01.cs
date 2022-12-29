@@ -50,8 +50,6 @@ namespace Oculus.Interaction {
         private int Default;
         public int HighlightLayer = 6;
 
-        // Wait Time between actions
-        public float waitTime = 5f;
 
         // Counter Dependence
         private float count = 0;
@@ -148,6 +146,7 @@ namespace Oculus.Interaction {
             Text02_W.fontStyle = FontStyles.Strikethrough;
             Brew01.SetActive(true);
             moveTowards = true;
+            StartCoroutine(ScaleObject(LiquideBot, 2f));
             //BrewMat Blue/Green #3A5B95
             //BrewMat.SetColor("DeepColor", new Color(10,140,140,50));
             //BrewMat.SetColor("_WaterColorShallow", new Color(10, 140, 140, 50));
@@ -167,10 +166,7 @@ namespace Oculus.Interaction {
             Button02.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = false;
             TankHole.SetActive(false);
             Text02_G.fontStyle = FontStyles.Strikethrough;
-            //BrewMat Yellow #E08100
-            //BrewMat.SetColor("DeepColor", new Color(224, 129, 0, 255));
-            //BrewMat.SetColor("_WaterColorShallow", new Color(152, 117, 28, 154));
-            //BrewMat.SetColor("_WaterColorDeep", new Color(84, 45, 4, 253));
+            StartCoroutine(ScaleObject(LiquideTop, 0.5f));
             Particels.SetActive(true);
             if (b2 == false)
             {
