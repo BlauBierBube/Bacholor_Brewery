@@ -166,9 +166,9 @@ namespace Oculus.Interaction
             //Debug.LogError("Step06 is aktiv");
             Text03.SetActive(false);
             Text04.SetActive(true);
+            Holo_Area08.SetActive(true);
             //Index Number
             StartCoroutine(WaitButton());
-            Invoke("ForwardBT", 2f);
             i = 3;
         }
         public void Counter()
@@ -186,7 +186,8 @@ namespace Oculus.Interaction
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step05
+                Step05,
+                Step06
             };
             i++;
             steps[i]();
@@ -195,7 +196,8 @@ namespace Oculus.Interaction
         {
             Action[] steps = new Action[]{
                 Step00,
-                Step01
+                Step01,
+                Step05
             };
 
             Text01.SetActive(false);
@@ -232,10 +234,8 @@ namespace Oculus.Interaction
             Forward_BT.SetActive(false);
             Backward_BT.SetActive(false);
             yield return new WaitForSeconds(2f);
-            if (i > 0 && i < 10)
-            {
-                Backward_BT.SetActive(true);
-            }
+            Backward_BT.SetActive(true);
+
         }
         private void ForwardBT()
         {

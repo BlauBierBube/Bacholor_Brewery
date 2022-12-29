@@ -93,7 +93,6 @@ namespace Oculus.Interaction
             Text04.SetActive(true);
             //Debug.LogError("Step04 is aktiv");
             StartCoroutine(WaitButton());
-            Invoke("ForwardBT", 2f);
             i = 3;
         }
 

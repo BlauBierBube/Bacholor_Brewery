@@ -125,7 +125,6 @@ namespace Oculus.Interaction
 
             Text02_A.fontStyle = FontStyles.Strikethrough;
             //Button Backward and Index Number
-            i = 2;
             Invoke("ForwardBT", 2f);
         }
         public void Step03()
@@ -135,7 +134,7 @@ namespace Oculus.Interaction
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
-            i = 3;
+            i = 2;
         }
 
         public void Step04()
@@ -146,7 +145,7 @@ namespace Oculus.Interaction
             Switch02.GetComponent<CheckRotation>().enabled = true;
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
-            i = 4;
+            i = 3;
         }
 
 
@@ -161,7 +160,6 @@ namespace Oculus.Interaction
 
             //Button Backward and Index Number
             Invoke("ForwardBT", 2f);
-            i = 5;
 
         }
 
@@ -177,7 +175,7 @@ namespace Oculus.Interaction
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
-            i = 6;
+            i = 4;
         }
         public void Step07() // Fertig
         {
@@ -185,12 +183,11 @@ namespace Oculus.Interaction
             Text05.SetActive(false);
             Text06.SetActive(true);
 
-            Holo_Area04.SetActive(true);
+            Holo_Area05.SetActive(true);
 
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
-            Invoke("ForwardBT", 2f);
-            i = 7;
+            i = 5;
         }
 
         public void forward()
@@ -198,10 +195,8 @@ namespace Oculus.Interaction
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
                 Step03,
                 Step04,
-                Step05,
                 Step06,
                 Step07
             };
@@ -213,10 +208,8 @@ namespace Oculus.Interaction
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step02,
                 Step03,
                 Step04,
-                Step05,
                 Step06
             };
 

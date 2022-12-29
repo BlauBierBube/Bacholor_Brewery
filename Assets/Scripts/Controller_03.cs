@@ -188,6 +188,7 @@ namespace Oculus.Interaction
         public void Step07()
         {
             Stammwuerze.layer = Default;
+            Holo_Area04.SetActive(true);
             //Debug.LogError("Step07 is aktiv");
             Text03.SetActive(false);
             Text04.SetActive(true);
@@ -254,11 +255,11 @@ namespace Oculus.Interaction
         IEnumerator ScaleObject(GameObject O, float S)
         {
             //Debug.LogError("Scale Active für " + O);
-            float scaleFactor = 0.01f;
-            float scaleMax = S;
+            float scaleFactor = 2.5f; //2.5
+            float scaleMax = S; //1
             float scaleIncrement = 0.01f;
 
-            while (scaleFactor < scaleMax)
+            while (scaleFactor > scaleMax)
             {
                 // Scale the object by the current scale factor
                 O.transform.localScale = new Vector3(O.transform.localScale.x, O.transform.localScale.y, scaleFactor);
@@ -267,7 +268,7 @@ namespace Oculus.Interaction
                 yield return new WaitForSeconds(0.05f);
 
                 // Decrement the scale factor
-                scaleFactor += scaleIncrement;
+                scaleFactor -= scaleIncrement;
             }
         }
 
@@ -277,10 +278,7 @@ namespace Oculus.Interaction
             Forward_BT.SetActive(false);
             Backward_BT.SetActive(false);
             yield return new WaitForSeconds(2f);
-            if (i > 0 && i < 10)
-            {
-                Backward_BT.SetActive(true);
-            }
+            Backward_BT.SetActive(true);
         }
         private void ForwardBT()
         {

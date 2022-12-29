@@ -195,7 +195,7 @@ namespace Oculus.Interaction
             //Debug.LogError("Step08 is aktiv");
             Text04.SetActive(false);
             Text05.SetActive(true);
-
+            Holo_Area07.SetActive(true);
             //Button and Index Number
             StartCoroutine(WaitButton());
             i = 4;

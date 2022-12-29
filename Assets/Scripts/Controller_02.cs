@@ -236,7 +236,6 @@ public class Controller_02 : MonoBehaviour
         Text05_A.fontStyle = FontStyles.Strikethrough;
         //Index Number
         Invoke("ForwardBT", 2f);
-        i = 5;
     }
     public void Step09()
     {
@@ -247,7 +246,7 @@ public class Controller_02 : MonoBehaviour
         Switch04.layer = HighlightLayer;
         Switch04.GetComponent<CheckRotation>().enabled = true;
         StartCoroutine(WaitButton());
-        i = 6;
+        i = 5;
     }
 
 
@@ -265,7 +264,6 @@ public class Controller_02 : MonoBehaviour
         //Button Backward and Index Number
 
         Invoke("ForwardBT", 2f);
-        i = 7;
     }
     public void Step11() // 
     {
@@ -281,18 +279,18 @@ public class Controller_02 : MonoBehaviour
         //Buttons and Index Number
         StartCoroutine(WaitButton());
         Invoke("ForwardBT", 2f);
-        i = 8;
+        i = 6;
     }
 
     public void Step12()
     {
         Debug.LogError("Step12 is aktiv");
-        Text06.SetActive(false);
-        Text07.SetActive(true);
+        Text07.SetActive(false);
+        Text08.SetActive(true);
         Holo_Area03.SetActive(true);
         //Button Backward and Index Number
         StartCoroutine(WaitButton());
-        i = 9;
+        i = 7;
 
     }
 
@@ -316,9 +314,7 @@ public class Controller_02 : MonoBehaviour
                 Step05,
                 Step06,
                 Step07,
-                Step08,
                 Step09,
-                Step10,
                 Step11,
                 Step12
             };
@@ -334,9 +330,7 @@ public class Controller_02 : MonoBehaviour
                 Step05,
                 Step06,
                 Step07,
-                Step08,
                 Step09,
-                Step10,
                 Step11
             };
 
