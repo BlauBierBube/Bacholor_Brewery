@@ -32,23 +32,23 @@ namespace Oculus.Interaction
         private int i = 0;
         private int Default;
         public int HighlightLayer = 6;
-        /*
+        
         private bool moveTowards = false;
         public float N1Angle = 57;
         public float N2Angle = 161;
-        */
+        
         private void Start()
         {
-            //moveTowards = true;
+            
         }
         private void Update()
         {
-            /*
+            
             if (moveTowards == true)
             {
                 Needle01.transform.localEulerAngles = new Vector3(0,N1Angle,0);
                 Needle02.transform.localEulerAngles = new Vector3(0, N2Angle, 0);
-            }*/
+            }
     }
 
 
@@ -93,7 +93,7 @@ namespace Oculus.Interaction
             Switch01.GetComponent<CheckRotation>().enabled = false;
 
             // Rotation der Temp auf ein Wert
-
+            moveTowards = true;
 
             Text02_T.fontStyle = FontStyles.Strikethrough;
             //Button Backward and Index Number

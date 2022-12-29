@@ -112,7 +112,7 @@ public class Controller_02 : MonoBehaviour
 
     public void Step00()
     {
-        Debug.LogError("Step00 is aktiv");
+        //Debug.LogError("Step00 is aktiv");
         Text01.SetActive(true);
         Holo_Area02.SetActive(false);
  
@@ -123,7 +123,7 @@ public class Controller_02 : MonoBehaviour
 
     public void Step01()
     {
-        Debug.LogError("Step01 is aktiv");
+        //Debug.LogError("Step01 is aktiv");
         Text01.SetActive(false);
         Text02.SetActive(true);
 
@@ -140,7 +140,7 @@ public class Controller_02 : MonoBehaviour
 
     public void Step02() // Switch 1 Läutern
     {
-        Debug.LogError("Step02 is aktiv");
+        //Debug.LogError("Step02 is aktiv");
         Switch01.layer = default;
         PipeHole.SetActive(false);
         Fluid_P2.SetActive(true);
@@ -163,7 +163,7 @@ public class Controller_02 : MonoBehaviour
 
     public void Step03() // Switch 2 Temp
     {
-        Debug.LogError("Step03 is aktiv");
+        //Debug.LogError("Step03 is aktiv");
         Switch02.layer = Default;
         Bubbles02.SetActive(true);
 
@@ -180,7 +180,7 @@ public class Controller_02 : MonoBehaviour
 
     public void Step04() // Counter01 Finish
     {
-        Debug.LogError("Step04 is aktiv");
+        //Debug.LogError("Step04 is aktiv");
 
 
         //Button Backward and Index Number
@@ -189,7 +189,7 @@ public class Controller_02 : MonoBehaviour
 
     public void Step05()
     {
-        Debug.LogError("Step05 is aktiv");
+        //Debug.LogError("Step05 is aktiv");
         Text02.SetActive(false);
         Text03.SetActive(true);
         TankFront.SetActive(false);
@@ -201,7 +201,7 @@ public class Controller_02 : MonoBehaviour
 
     public void Step06()
     {
-        Debug.LogError("Step06 is aktiv");
+        //Debug.LogError("Step06 is aktiv");
         Text03.SetActive(false);
         Text04.SetActive(true);
         Invoke("ForwardBT", 2f);
@@ -212,7 +212,7 @@ public class Controller_02 : MonoBehaviour
     public void Step07()
     {
         PipeHole.SetActive(true);
-        Debug.LogError("Step07 is aktiv");
+        //Debug.LogError("Step07 is aktiv");
         Text04.SetActive(false);
         Text05.SetActive(true);
         Sinkboden.layer = Default;
@@ -228,7 +228,7 @@ public class Controller_02 : MonoBehaviour
     }
     public void Step08() // Switch 3 Abpumpen
     {
-        Debug.LogError("Step08 is aktiv");
+        //Debug.LogError("Step08 is aktiv");
         Switch03.layer = Default;
 
         //Deaktivate Switch
@@ -239,7 +239,7 @@ public class Controller_02 : MonoBehaviour
     }
     public void Step09()
     {
-        Debug.LogError("Step09 is aktiv");
+        //Debug.LogError("Step09 is aktiv");
         Text05.SetActive(false);
         Text06.SetActive(true);
         //Aktivate Switch
@@ -252,7 +252,7 @@ public class Controller_02 : MonoBehaviour
 
     public void Step10() // Switch 4 Austrebern
     {
-        Debug.LogError("Step10 is aktiv");
+        //Debug.LogError("Step10 is aktiv");
         Schacht.layer = HighlightLayer;
         Switch04.layer = Default;
         rotate = true;
@@ -267,7 +267,7 @@ public class Controller_02 : MonoBehaviour
     }
     public void Step11() // 
     {
-        Debug.LogError("Step11 is aktiv");
+        //Debug.LogError("Step11 is aktiv");
         Text06.SetActive(false);
         Text07.SetActive(true);
         Schacht.layer = Default;
@@ -284,7 +284,7 @@ public class Controller_02 : MonoBehaviour
 
     public void Step12()
     {
-        Debug.LogError("Step12 is aktiv");
+        //Debug.LogError("Step12 is aktiv");
         Text07.SetActive(false);
         Text08.SetActive(true);
         Holo_Area03.SetActive(true);
@@ -307,7 +307,7 @@ public class Controller_02 : MonoBehaviour
 
     public void forward()
     {
-        Debug.LogError("Forward is aktiv");
+        //Debug.LogError("Forward is aktiv");
         Action[] steps = new Action[]{
                 Step00,
                 Step01,
@@ -323,7 +323,7 @@ public class Controller_02 : MonoBehaviour
     }
     public void backward()
     {
-        Debug.LogError("Backward is aktiv");
+        //Debug.LogError("Backward is aktiv");
         Action[] steps = new Action[]{
                 Step00,
                 Step01,
@@ -347,7 +347,7 @@ public class Controller_02 : MonoBehaviour
     }
     IEnumerator WaitButton()
     {
-        Debug.LogError("WaitButton is aktiv");
+        //Debug.LogError("WaitButton is aktiv");
         Forward_BT.SetActive(false);
         Backward_BT.SetActive(false);
         yield return new WaitForSeconds(2f);
