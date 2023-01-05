@@ -57,7 +57,7 @@ namespace Oculus.Interaction {
         private bool b1 = false;
         private bool b2 = false;
         private bool s1 = false;
-
+        private bool s2 = false;
         // moveToPosition
         public bool moveTowards = false;
         private bool onFinish = false;
@@ -127,6 +127,13 @@ namespace Oculus.Interaction {
             Button01.layer = HighlightLayer;
             Button02.layer = HighlightLayer;
             Switch01.layer = HighlightLayer;
+            Text02_W.fontStyle = FontStyles.Normal;
+            Text02_G.fontStyle = FontStyles.Normal;
+            Text02_T.fontStyle = FontStyles.Normal;
+            s1 = false;
+            b1 = false;
+            b2 = false;
+            count = 0;
             Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled= true;
             Button02.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = true;
             Switch01.GetComponent<CheckRotation>().enabled = true;
@@ -138,21 +145,22 @@ namespace Oculus.Interaction {
 
         public void Step02() // Button 1 Water
         {
-            //Debug.LogError("Step02 is aktiv");
-            Button01.layer = Default;
-            Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = false;
-            PipeHole.SetActive(false);
-            WaterAni.SetActive(true);
-            Text02_W.fontStyle = FontStyles.Strikethrough;
-            Brew01.SetActive(true);
-            moveTowards = true;
-            StartCoroutine(ScaleObject(LiquideBot, 2f));
-            //BrewMat Blue/Green #3A5B95
-            //BrewMat.SetColor("DeepColor", new Color(10,140,140,50));
-            //BrewMat.SetColor("_WaterColorShallow", new Color(10, 140, 140, 50));
-            //BrewMat.SetColor("_WaterColorDeep", new Color(10, 140, 140, 50));
             if (b1 == false)
             {
+                //Debug.LogError("Step02 is aktiv");
+                Button01.layer = Default;
+                Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = false;
+                PipeHole.SetActive(false);
+                WaterAni.SetActive(true);
+                Text02_W.fontStyle = FontStyles.Strikethrough;
+
+                Brew01.SetActive(true);
+                moveTowards = true;
+                StartCoroutine(ScaleObject(LiquideBot, 2f));
+                //BrewMat Blue/Green #3A5B95
+                //BrewMat.SetColor("DeepColor", new Color(10,140,140,50));
+                //BrewMat.SetColor("_WaterColorShallow", new Color(10, 140, 140, 50));
+                //BrewMat.SetColor("_WaterColorDeep", new Color(10, 140, 140, 50));
                 b1 = true;
                 Counter();
             }
@@ -161,15 +169,15 @@ namespace Oculus.Interaction {
 
         public void Step03() // Button 2
         {
-            //Debug.LogError("Step03 is aktiv");
-            Button02.layer = Default;
-            Button02.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = false;
-            TankHole.SetActive(false);
-            Text02_G.fontStyle = FontStyles.Strikethrough;
-            StartCoroutine(ScaleObject(LiquideTop, 0.5f));
-            Particels.SetActive(true);
             if (b2 == false)
             {
+                //Debug.LogError("Step03 is aktiv");
+                Button02.layer = Default;
+                Button02.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = false;
+                TankHole.SetActive(false);
+                Text02_G.fontStyle = FontStyles.Strikethrough;
+                StartCoroutine(ScaleObject(LiquideTop, 0.5f));
+                Particels.SetActive(true);
                 b2 = true;
                 Counter();
             }
@@ -177,13 +185,13 @@ namespace Oculus.Interaction {
 
         public void Step04() // Switch 1
         {
-            //Debug.LogError("Step04 is aktiv");
-            Switch01.GetComponent<CheckRotation>().enabled = false;
-            Switch01.layer = Default;
-            Text02_T.fontStyle = FontStyles.Strikethrough;
-            Bubbles.SetActive(true);
             if (s1 == false)
             {
+                //Debug.LogError("Step04 is aktiv");
+                Switch01.GetComponent<CheckRotation>().enabled = false;
+                Switch01.layer = Default;
+                Text02_T.fontStyle = FontStyles.Strikethrough;
+                Bubbles.SetActive(true);
                 s1 = true;
                 Counter();
             }
@@ -203,6 +211,8 @@ namespace Oculus.Interaction {
             //Debug.LogError("Step06 is aktiv");
             Text03.SetActive(false);
             Text04.SetActive(true);
+            Text04_M.fontStyle = FontStyles.Normal;
+            s2 = false;
             Switch02.layer = HighlightLayer;
             Switch02.GetComponent<CheckRotation>().enabled = true;
             //Button and Index Number
@@ -211,16 +221,20 @@ namespace Oculus.Interaction {
         }
         public void Step07() // Switch 2
         {
-            //Debug.LogError("Step07 is aktiv");
-            Switch02.GetComponent<CheckRotation>().enabled = false;
-            Switch02.layer = Default;
-            Text04.SetActive(false);
-            Text05.SetActive(true);
-            TankFront.SetActive(false);
-            Text04_M.fontStyle = FontStyles.Strikethrough;
-            rotate = true;
-            //Buttons and Index Number
-            Invoke("ForwardBT", 2f);
+            if (s2 == false)
+            {
+                //Debug.LogError("Step07 is aktiv");
+                Switch02.GetComponent<CheckRotation>().enabled = false;
+                Switch02.layer = Default;
+                Text04.SetActive(false);
+                Text05.SetActive(true);
+                TankFront.SetActive(false);
+                Text04_M.fontStyle = FontStyles.Strikethrough;
+                rotate = true;
+                //Buttons and Index Number
+                s2 = true;
+                Invoke("ForwardBT", 2f);
+            }
         }
         public void Step08()
         {

@@ -129,6 +129,11 @@ public class Controller_02 : MonoBehaviour
 
         Switch01.layer = HighlightLayer;
         Switch02.layer = HighlightLayer;
+        Text02_L.fontStyle = FontStyles.Normal;
+        Text02_T.fontStyle = FontStyles.Normal;
+        count = 0;
+        s1 = false;
+        s2 = false;
         Switch01.GetComponent<CheckRotation>().enabled = true;
         Switch02.GetComponent<CheckRotation>().enabled = true;
         //Button Backward and Index Number
@@ -140,22 +145,22 @@ public class Controller_02 : MonoBehaviour
 
     public void Step02() // Switch 1 Läutern
     {
-        //Debug.LogError("Step02 is aktiv");
-        Switch01.layer = default;
-        PipeHole.SetActive(false);
-        Fluid_P2.SetActive(true);
-        Brew02.SetActive(true);
-        moveTowards = true;
-        //BrewMat.SetColor("DeepColor", new Color(224, 129, 0, 255));
-        //BrewMat.SetColor("_WaterColorShallow", new Color(152, 117, 28, 154));
-        //BrewMat.SetColor("_WaterColorDeep", new Color(84, 45, 4, 253));
-
-        //Deaktivate Switch
-        Switch01.GetComponent<CheckRotation>().enabled = false;
-        Text02_L.fontStyle = FontStyles.Strikethrough;
-        //Index Number
         if (s1 == false)
         {
+            //Debug.LogError("Step02 is aktiv");
+            Switch01.layer = default;
+            PipeHole.SetActive(false);
+            Fluid_P2.SetActive(true);
+            Brew02.SetActive(true);
+            moveTowards = true;
+            //BrewMat.SetColor("DeepColor", new Color(224, 129, 0, 255));
+            //BrewMat.SetColor("_WaterColorShallow", new Color(152, 117, 28, 154));
+            //BrewMat.SetColor("_WaterColorDeep", new Color(84, 45, 4, 253));
+
+            //Deaktivate Switch
+            Switch01.GetComponent<CheckRotation>().enabled = false;
+            Text02_L.fontStyle = FontStyles.Strikethrough;
+            //Index Number
             s1 = true;
             Counter01();
         }
@@ -163,16 +168,16 @@ public class Controller_02 : MonoBehaviour
 
     public void Step03() // Switch 2 Temp
     {
-        //Debug.LogError("Step03 is aktiv");
-        Switch02.layer = Default;
-        Bubbles02.SetActive(true);
-
-        //Deaktivate Switch
-        Switch02.GetComponent<CheckRotation>().enabled = false;
-        Text02_T.fontStyle = FontStyles.Strikethrough;
-        //Index Number
         if (s2 == false)
         {
+            //Debug.LogError("Step03 is aktiv");
+            Switch02.layer = Default;
+            Bubbles02.SetActive(true);
+
+            //Deaktivate Switch
+            Switch02.GetComponent<CheckRotation>().enabled = false;
+            Text02_T.fontStyle = FontStyles.Strikethrough;
+            //Index Number
             s2 = true;
             Counter01();
         }
@@ -212,6 +217,7 @@ public class Controller_02 : MonoBehaviour
     public void Step07()
     {
         PipeHole.SetActive(true);
+        Fluid_P2.SetActive(false);
         //Debug.LogError("Step07 is aktiv");
         Text04.SetActive(false);
         Text05.SetActive(true);

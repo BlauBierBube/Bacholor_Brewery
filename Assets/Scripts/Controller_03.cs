@@ -105,6 +105,11 @@ namespace Oculus.Interaction
 
             Button01.layer = HighlightLayer;
             Switch01.layer = HighlightLayer;
+            Text02_T.fontStyle = FontStyles.Normal;
+            Text02_H.fontStyle = FontStyles.Normal;
+            b1 = false;
+            s1 = false;
+            count = 0;
             Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = true;
             Switch01.GetComponent<CheckRotation>().enabled = true;
             //Button Backward and Index Number
@@ -117,18 +122,17 @@ namespace Oculus.Interaction
 
         public void Step02() // Button 1 Hopfen
         {
-            //Debug.LogError("Step02 is aktiv");
-            Button01.layer = Default;
-            Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = false;
-
-            TankHole03.SetActive(false);
-            Hopfen.SetActive(true);
-
-            Text02_H.fontStyle = FontStyles.Strikethrough;
-            Particels03.SetActive(true);
-
             if (b1 == false)
             {
+                //Debug.LogError("Step02 is aktiv");
+                Button01.layer = Default;
+                Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = false;
+
+                TankHole03.SetActive(false);
+                Hopfen.SetActive(true);
+
+                Text02_H.fontStyle = FontStyles.Strikethrough;
+                Particels03.SetActive(true);
                 b1 = true;
                 Counter();
             }
@@ -137,16 +141,14 @@ namespace Oculus.Interaction
 
         public void Step03() // Switch01 Temperatur
         {
-            //Debug.LogError("Step03 is aktiv");
-            Bubbles03.SetActive(true);
-            TankFront03.SetActive(false);
-            Switch01.layer = Default;
-            Switch01.GetComponent<CheckRotation>().enabled = false;
-            Text02_T.fontStyle = FontStyles.Strikethrough;
-
-
             if (s1 == false)
             {
+                //Debug.LogError("Step03 is aktiv");
+                Bubbles03.SetActive(true);
+                TankFront03.SetActive(false);
+                Switch01.layer = Default;
+                Switch01.GetComponent<CheckRotation>().enabled = false;
+                Text02_T.fontStyle = FontStyles.Strikethrough;
                 s1 = true;
                 Counter();
             }

@@ -100,6 +100,11 @@ namespace Oculus.Interaction
             Text02.SetActive(true);
             Switch02.layer = HighlightLayer;
             Switch01.layer = HighlightLayer;
+            s1 = false;
+            s2 = false;
+
+            Text02_U.fontStyle = FontStyles.Normal;
+            Text02_T.fontStyle = FontStyles.Normal;
             Switch01.GetComponent<CheckRotation>().enabled = true;
             Switch02.GetComponent<CheckRotation>().enabled = true;
             //Button Backward and Index Number
@@ -110,15 +115,14 @@ namespace Oculus.Interaction
 
         public void Step02() // Switch 1 Pumpe
         {
-            //Debug.LogError("Step02 is aktiv");
-            Switch01.layer = Default;
-            Switch01.GetComponent<CheckRotation>().enabled = false;
-            PipeHole.SetActive(false);
-            WaterAni07.SetActive(true);
-            Text02_U.fontStyle = FontStyles.Strikethrough;
-
             if (s1 == false)
             {
+                //Debug.LogError("Step02 is aktiv");
+                Switch01.layer = Default;
+                Switch01.GetComponent<CheckRotation>().enabled = false;
+                PipeHole.SetActive(false);
+                WaterAni07.SetActive(true);
+                Text02_U.fontStyle = FontStyles.Strikethrough;
                 s1 = true;
                 Counter();
             }
@@ -127,16 +131,15 @@ namespace Oculus.Interaction
 
         public void Step03() // Switch 2 Temp
         {
-            //Debug.LogError("Step03 is aktiv");
-            Switch02.GetComponent<CheckRotation>().enabled = false;
-            Switch02.layer = Default;
-            Text02_T.fontStyle = FontStyles.Strikethrough;
-
-
-            // Animation + Hole Tank + Brew07
-
             if (s2 == false)
             {
+                //Debug.LogError("Step03 is aktiv");
+                Switch02.GetComponent<CheckRotation>().enabled = false;
+                Switch02.layer = Default;
+                Text02_T.fontStyle = FontStyles.Strikethrough;
+
+
+                // Animation + Hole Tank + Brew07
                 s2 = true;
                 Counter();
             }

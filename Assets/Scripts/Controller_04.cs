@@ -107,7 +107,9 @@ namespace Oculus.Interaction
             //Debug.LogError("Step01 is aktiv");
             Text01.SetActive(false);
             Text02.SetActive(true);
-
+            Text02_A.fontStyle = FontStyles.Normal;
+            s1 = false;
+            s2 = false;
             Switch01.layer = HighlightLayer;
             Switch01.GetComponent<CheckRotation>().enabled = true;
             //Button Backward and Index Number
@@ -118,14 +120,19 @@ namespace Oculus.Interaction
 
         public void Step02() // Switch01 Pumpe
         {
-            //Debug.LogError("Step02 is aktiv");
-            TankFront.SetActive(false);
-            Switch01.layer = Default;
-            Switch01.GetComponent<CheckRotation>().enabled = false;
+            if (s1 == false)
+            {
+                //Debug.LogError("Step02 is aktiv");
+                TankFront.SetActive(false);
+                Switch01.layer = Default;
+                Switch01.GetComponent<CheckRotation>().enabled = false;
 
-            Text02_A.fontStyle = FontStyles.Strikethrough;
-            //Button Backward and Index Number
-            Invoke("ForwardBT", 2f);
+                Text02_A.fontStyle = FontStyles.Strikethrough;
+                //Button Backward and Index Number
+                Invoke("ForwardBT", 2f);
+                s1 = true;
+            }
+
         }
         public void Step03()
         {
@@ -142,6 +149,7 @@ namespace Oculus.Interaction
             Text03.SetActive(false);
             Text04.SetActive(true);
             Switch02.layer = HighlightLayer;
+            Text04_P.fontStyle = FontStyles.Normal;
             Switch02.GetComponent<CheckRotation>().enabled = true;
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
@@ -151,15 +159,20 @@ namespace Oculus.Interaction
 
         public void Step05() // Switch02 Abpumpen
         {
-            //Debug.LogError("Step03 is aktiv");
-            Switch02.layer = Default;
-            Switch02.GetComponent<CheckRotation>().enabled = false;
-            Text04_P.fontStyle = FontStyles.Strikethrough;
+            if (s2 == false)
+            {
+                //Debug.LogError("Step03 is aktiv");
+                Switch02.layer = Default;
+                Switch02.GetComponent<CheckRotation>().enabled = false;
+                Text04_P.fontStyle = FontStyles.Strikethrough;
 
-            //Brew go Down, Kegel go down 
+                //Brew go Down, Kegel go down 
 
-            //Button Backward and Index Number
-            Invoke("ForwardBT", 2f);
+                s2 = true;
+                //Button Backward and Index Number
+                Invoke("ForwardBT", 2f);
+            }
+
 
         }
 

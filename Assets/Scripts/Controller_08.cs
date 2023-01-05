@@ -57,8 +57,9 @@ namespace Oculus.Interaction
             //Debug.LogError("Step01 is aktiv");
             Text01.SetActive(false);
             Text02.SetActive(true);
-
+            s1 = false;
             Switch01.layer = HighlightLayer;
+            Text02_F.fontStyle = FontStyles.Normal;
             Switch01.GetComponent<CheckRotation>().enabled = true;
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
@@ -68,12 +69,17 @@ namespace Oculus.Interaction
 
         public void Step02() // Switch 1 Filter
         {
-            //Debug.LogError("Step02 is aktiv");
-            Switch01.layer = Default;
-            Switch01.GetComponent<CheckRotation>().enabled = false;
+            if (s1 == false)
+            {
+                //Debug.LogError("Step02 is aktiv");
+                Switch01.layer = Default;
+                Switch01.GetComponent<CheckRotation>().enabled = false;
 
-            Text02_F.fontStyle = FontStyles.Strikethrough;
-            Invoke("ForwardBT", 2f);
+                Text02_F.fontStyle = FontStyles.Strikethrough;
+                s1 = true;
+                Invoke("ForwardBT", 2f);
+            }
+
         }
 
 

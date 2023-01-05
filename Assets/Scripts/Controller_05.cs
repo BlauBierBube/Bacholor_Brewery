@@ -36,7 +36,7 @@ namespace Oculus.Interaction
         private bool moveTowards = false;
         public float N1Angle = 57;
         public float N2Angle = 161;
-        
+        private bool s1 = false;
         private void Start()
         {
             
@@ -79,6 +79,7 @@ namespace Oculus.Interaction
             Text02.SetActive(true);
 
             Switch01.layer = HighlightLayer;
+            Text02_T.fontStyle = FontStyles.Normal;
             Switch01.GetComponent<CheckRotation>().enabled = true;
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
@@ -88,16 +89,21 @@ namespace Oculus.Interaction
 
         public void Step02() // Switch01 Temp
         {
-            //Debug.LogError("Step02 is aktiv");
-            Switch01.layer = Default;
-            Switch01.GetComponent<CheckRotation>().enabled = false;
+            if(s1 == false)
+            {
+                //Debug.LogError("Step02 is aktiv");
+                Switch01.layer = Default;
+                Switch01.GetComponent<CheckRotation>().enabled = false;
 
-            // Rotation der Temp auf ein Wert
-            moveTowards = true;
+                // Rotation der Temp auf ein Wert
+                moveTowards = true;
 
-            Text02_T.fontStyle = FontStyles.Strikethrough;
-            //Button Backward and Index Number
-            Invoke("ForwardBT", 2f);
+                Text02_T.fontStyle = FontStyles.Strikethrough;
+                s1 = true;
+                //Button Backward and Index Number
+                Invoke("ForwardBT", 2f);
+            }
+
         }
         public void Step03()
         {
