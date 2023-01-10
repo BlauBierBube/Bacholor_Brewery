@@ -7,7 +7,6 @@ using UnityEngine.Events;
 
 public class CheckRotation : MonoBehaviour
 {
-    private Vector3 oldRotation;
     private Vector3 currentRotation;
 
     [SerializeField] TextMeshPro Textfield;
@@ -43,13 +42,12 @@ public class CheckRotation : MonoBehaviour
 
             if (currentRotation != transform.localEulerAngles)
                 {
-                    oldRotation = currentRotation;
                     currentRotation = transform.localEulerAngles;
 
-                    if (Needle != null)
+                    if (Needle != null) // Set Rotation from Temp Needle
                         Needle.transform.localEulerAngles = currentRotation;
 
-                    if (Textfield != null)
+                    if (Textfield != null) // Textfield Temperatur alternative 
                     {
                         Textfield.text = Mathf.Round((currentRotation.y - 180) * -0.833f) + " °C";
                     }
