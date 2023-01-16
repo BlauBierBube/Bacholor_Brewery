@@ -58,11 +58,16 @@ namespace Oculus.Interaction
         private Vector3 startPosition;
 
 
+        // Material
+        Renderer renderer;
+        Material materialToAddBack;
+
         // Start is called before the first frame update
         void Start()
         {
             startPosition = Brew06.transform.position; //for moveToPosition
         }
+        
 
         // Update is called once per frame
         void Update()
@@ -70,14 +75,14 @@ namespace Oculus.Interaction
             //Debug.LogError("i = "+i);
             //Debug.LogError("count =" + count);
 
-
+            /*
             if (moveTowards == true && onFinish == false)
             {
                 float step = speed * Time.deltaTime;
                 Brew06.transform.position = Vector3.MoveTowards(Brew06.transform.position, targetPosition, step);
                 if (Vector3.Distance(Brew06.transform.position, startPosition) < 0.001)
                     onFinish = true;
-            }
+            }*/
         }
 
         public void StepOutOfHolo()
@@ -144,9 +149,12 @@ namespace Oculus.Interaction
                 Switch01.GetComponent<CheckRotation>().enabled = false;
                 Switch01.layer = Default;
                 Text02_P.fontStyle = FontStyles.Strikethrough;
+                Brew06.SetActive(true);
+                // Remove Material for TankHole
+                RemoveMaterial();
+                // Scale Brew06
+                StartCoroutine(ScaleObject(Brew06, 8f));
 
-
-                // Animation + Hole Tank + Brew06
                 s1 = true;
                 Counter();
             }
@@ -170,7 +178,7 @@ namespace Oculus.Interaction
             s2 = false;
             Switch02.layer = HighlightLayer;
             Text03_T.fontStyle = FontStyles.Normal;
-            Switch02.GetComponent<CheckRotation>().enabled = true;
+            Switch02.GetComponent<TempRotConvert>().enabled = true;
             //Index Number
             StartCoroutine(WaitButton());
             i = 2;
@@ -182,7 +190,7 @@ namespace Oculus.Interaction
             {
                 //Debug.LogError("Step06 is aktiv");
                 Switch02.layer = Default;
-                Switch02.GetComponent<CheckRotation>().enabled = false;
+                Switch02.GetComponent<TempRotConvert>().enabled = false;
                 Text03_T.fontStyle = FontStyles.Strikethrough;
                 s2 = true;
                 //Button and Index Number
@@ -202,6 +210,9 @@ namespace Oculus.Interaction
         }
         public void Step08()
         {
+            // Add Material for TankHole
+            AddMaterialBack();
+            Brew06.SetActive(false);
             //Debug.LogError("Step08 is aktiv");
             Text04.SetActive(false);
             Text05.SetActive(true);
@@ -260,7 +271,7 @@ namespace Oculus.Interaction
             while (scaleFactor < scaleMax)
             {
                 // Scale the object by the current scale factor
-                O.transform.localScale = new Vector3(O.transform.localScale.x, O.transform.localScale.y, scaleFactor);
+                O.transform.localScale = new Vector3(O.transform.localScale.x,scaleFactor, O.transform.localScale.z);
 
                 // Wait for a short amount of time before scaling again
                 yield return new WaitForSeconds(0.05f);
@@ -284,6 +295,33 @@ namespace Oculus.Interaction
         private void ForwardBT()
         {
             Forward_BT.SetActive(true);
+        }
+
+        void RemoveMaterial()
+        {
+            renderer = TankFront.GetComponent<Renderer>();
+            Material[] materials = renderer.materials;
+
+            //Remove the first material from the materials array
+            materialToAddBack = materials[0];
+            Material[] newMaterials = new Material[materials.Length - 1];
+            for (int i = 1; i < materials.Length; i++)
+            {
+                newMaterials[i - 1] = materials[i];
+            }
+            renderer.materials = newMaterials;
+        }
+
+        void AddMaterialBack()
+        {
+            // Add the removed material back to the materials array
+            Material[] materialsWithAdded = new Material[renderer.materials.Length + 1];
+            materialsWithAdded[0] = materialToAddBack;
+            for (int i = 0; i < renderer.materials.Length; i++)
+            {
+                materialsWithAdded[i + 1] = renderer.materials[i];
+            }
+            renderer.materials = materialsWithAdded;
         }
     }
 }

@@ -41,6 +41,7 @@ namespace Oculus.Interaction {
         [SerializeField] GameObject Inside;
 
         [SerializeField] GameObject WaterAni;
+        [SerializeField] GameObject Gerste;
         [SerializeField] GameObject Brew01;
         [SerializeField] GameObject Bubbles;
         [SerializeField] GameObject Particels;
@@ -136,7 +137,7 @@ namespace Oculus.Interaction {
             count = 0;
             Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled= true;
             Button02.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = true;
-            Switch01.GetComponent<CheckRotation>().enabled = true;
+            Switch01.GetComponent<TempRotConvert>().enabled = true;
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
             i = 1;
@@ -175,6 +176,7 @@ namespace Oculus.Interaction {
                 Button02.layer = Default;
                 Button02.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = false;
                 TankHole.SetActive(false);
+                Gerste.SetActive(true);
                 Text02_G.fontStyle = FontStyles.Strikethrough;
                 StartCoroutine(ScaleObject(LiquideTop, 0.5f));
                 Particels.SetActive(true);
@@ -188,7 +190,7 @@ namespace Oculus.Interaction {
             if (s1 == false)
             {
                 //Debug.LogError("Step04 is aktiv");
-                Switch01.GetComponent<CheckRotation>().enabled = false;
+                Switch01.GetComponent<TempRotConvert>().enabled = false;
                 Switch01.layer = Default;
                 Text02_T.fontStyle = FontStyles.Strikethrough;
                 Bubbles.SetActive(true);
@@ -203,6 +205,7 @@ namespace Oculus.Interaction {
             Text03.SetActive(true);
             PipeHole.SetActive(true);
             TankHole.SetActive(true);
+            Gerste.SetActive(false);
             //Button and Index Number
             Invoke("ForwardBT", 2f);
         }

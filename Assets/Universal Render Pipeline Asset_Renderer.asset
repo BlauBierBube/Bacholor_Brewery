@@ -36,7 +36,7 @@ MonoBehaviour:
   m_Name: ScreenSpaceOutlines
   m_EditorClassIdentifier: 
   m_Active: 1
-  renderPassEvent: 300
+  renderPassEvent: 500
   outlinesLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -44,7 +44,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   outlineSettings:
-    outlineColor: {r: 0.16509432, g: 0.74467874, b: 1, a: 0.53333336}
+    outlineColor: {r: 0.16509432, g: 0.74467874, b: 1, a: 0.39215687}
     outlineScale: 2
     depthThreshold: 0
     robertsCrossMultiplier: 0

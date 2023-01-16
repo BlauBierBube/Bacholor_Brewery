@@ -57,7 +57,7 @@ public class Controller_02 : MonoBehaviour
     // moveToPosition
     public bool moveTowards = false;
     private bool onFinish = false;
-    public float speed = 1f;
+    public float speed = 0.1f;
     public Vector3 targetPosition;
     private Vector3 startPosition;
 
@@ -86,14 +86,14 @@ public class Controller_02 : MonoBehaviour
         {
             float step = speed * Time.deltaTime;
             Brew02.transform.position = Vector3.MoveTowards(Brew02.transform.position, targetPosition, step);
-            if(Vector3.Distance(Brew02.transform.position, startPosition) <0.001)
+            if(Vector3.Distance(Brew02.transform.position, targetPosition) <0.001)
                 onFinish = true;
         }
         if (moveTowards == false && onFinish == true) // Move To Positin DOWN
         {
             float step = speed * Time.deltaTime;
-            Brew02.transform.position = Vector3.MoveTowards(targetPosition, Brew02.transform.position, step);
-            if (Vector3.Distance(targetPosition, Brew02.transform.position) < 0.001)
+            Brew02.transform.position = Vector3.MoveTowards(Brew02.transform.position, startPosition, step);
+            if (Vector3.Distance(Brew02.transform.position, startPosition) < 0.001)
                 onFinish = false;
         }
     }
@@ -135,7 +135,7 @@ public class Controller_02 : MonoBehaviour
         s1 = false;
         s2 = false;
         Switch01.GetComponent<CheckRotation>().enabled = true;
-        Switch02.GetComponent<CheckRotation>().enabled = true;
+        Switch02.GetComponent<TempRotConvert>().enabled = true;
         //Button Backward and Index Number
         StartCoroutine(WaitButton());
         i = 1;
@@ -175,7 +175,7 @@ public class Controller_02 : MonoBehaviour
             Bubbles02.SetActive(true);
 
             //Deaktivate Switch
-            Switch02.GetComponent<CheckRotation>().enabled = false;
+            Switch02.GetComponent<TempRotConvert>().enabled = false;
             Text02_T.fontStyle = FontStyles.Strikethrough;
             //Index Number
             s2 = true;
@@ -237,6 +237,7 @@ public class Controller_02 : MonoBehaviour
         //Debug.LogError("Step08 is aktiv");
         Switch03.layer = Default;
 
+        moveTowards = false;
         //Deaktivate Switch
         Switch03.GetComponent<CheckRotation>().enabled = false;
         Text05_A.fontStyle = FontStyles.Strikethrough;

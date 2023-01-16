@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4547766558709854060}
   - component: {fileID: 2470974600328217789}
   - component: {fileID: 2315084860150559528}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Door.Handle.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6363348974041812063}
   - component: {fileID: 5434653101606485292}
   - component: {fileID: 4005207962793154813}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Door.Handle.Frame.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 3290065599199564211}
   - component: {fileID: 3290065599199564209}
   - component: {fileID: 3290065599199564210}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HandGrabInteractable_mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 3290065599553001872}
   - component: {fileID: 3290065599553001878}
   - component: {fileID: 3290065599553001879}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HandGrabInteractable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 3290065599746319880}
   - component: {fileID: 3290065599746319886}
   - component: {fileID: 3290065599746319887}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HandGrabInteractable_mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -505,7 +505,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3290065600045162501}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pivit_Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 3290065600178545936}
   - component: {fileID: 3290065600178545942}
   - component: {fileID: 3290065600178545943}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HandGrabInteractable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -648,7 +648,7 @@ GameObject:
   - component: {fileID: 5435453832069560813}
   - component: {fileID: 4555559587472731753}
   - component: {fileID: 5899928410546318508}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Door.Handle.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -731,7 +731,7 @@ GameObject:
   - component: {fileID: 512415802124038532}
   - component: {fileID: 8008098368140928089}
   - component: {fileID: 5141951147378640853}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DIN.Falz.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -821,7 +821,7 @@ GameObject:
   - component: {fileID: 6039019735815771941}
   - component: {fileID: 6039019735815771942}
   - component: {fileID: 6039019735815771940}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DIN.Door.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1017,7 +1017,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4249985138066214307}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

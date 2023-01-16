@@ -33,7 +33,9 @@ namespace Oculus.Interaction
 
         [SerializeField] GameObject WaterAni04;
         [SerializeField] GameObject Brew04;
-        [SerializeField] GameObject Particels04;
+        [SerializeField] GameObject Kegel_1;
+        [SerializeField] GameObject Kegel_2;
+        [SerializeField] GameObject Partikel;
         [SerializeField] Material BrewMat04;
 
         private int i = 0;
@@ -48,7 +50,7 @@ namespace Oculus.Interaction
         // moveToPosition
         public bool moveTowards = false;
         private bool onFinish = false;
-        public float speed = 1f;
+        public float speed = 0.1f;
         public Vector3 targetPosition;
         private Vector3 startPosition;
 
@@ -66,17 +68,25 @@ namespace Oculus.Interaction
         {
             if (rotate == true)
             {
-                Particels04.transform.Rotate(0, -rotationSpeed, 0, Space.World);
+                Kegel_1.transform.Rotate(0, -rotationSpeed, 0, Space.World);
+                Kegel_2.transform.Rotate(0, -rotationSpeed, 0, Space.World);
             }
             //Debug.LogError("i = "+i);
             //Debug.LogError("count =" + count);
 
-            if (moveTowards == true && onFinish == false)
+            if (moveTowards == true && onFinish == false) // Move To Positin UP
             {
                 float step = speed * Time.deltaTime;
                 Brew04.transform.position = Vector3.MoveTowards(Brew04.transform.position, targetPosition, step);
-                if (Vector3.Distance(Brew04.transform.position, startPosition) < 0.001)
+                if (Vector3.Distance(Brew04.transform.position, targetPosition) < 0.001)
                     onFinish = true;
+            }
+            if (moveTowards == false && onFinish == true) // Move To Positin DOWN
+            {
+                float step = speed * Time.deltaTime;
+                Brew04.transform.position = Vector3.MoveTowards(Brew04.transform.position, startPosition, step);
+                if (Vector3.Distance(Brew04.transform.position, startPosition) < 0.001)
+                    onFinish = false;
             }
         }
 
@@ -95,8 +105,7 @@ namespace Oculus.Interaction
             Text01.SetActive(true);
             Holo_Area04.SetActive(false);
 
-            Brew04.SetActive(true);
-            Particels04.SetActive(true);
+
             //Buttons and Index Number
             StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
@@ -126,6 +135,11 @@ namespace Oculus.Interaction
                 TankFront.SetActive(false);
                 Switch01.layer = Default;
                 Switch01.GetComponent<CheckRotation>().enabled = false;
+                // 
+                moveTowards = true;
+                Brew04.SetActive(true);
+                rotate = true;
+
 
                 Text02_A.fontStyle = FontStyles.Strikethrough;
                 //Button Backward and Index Number
@@ -167,6 +181,7 @@ namespace Oculus.Interaction
                 Text04_P.fontStyle = FontStyles.Strikethrough;
 
                 //Brew go Down, Kegel go down 
+                moveTowards = false;
 
                 s2 = true;
                 //Button Backward and Index Number
@@ -178,9 +193,13 @@ namespace Oculus.Interaction
 
         public void Step06() // 
         {
+            Brew04.SetActive(false);
+            rotate = false;
             // Deaktivate Brew, Kegel
             TankFront.SetActive(true);
-
+            Brew04.SetActive(false);
+            Kegel_1.SetActive(false);
+            Kegel_2.SetActive(false);
             //Debug.LogError("Step04 is aktiv");
             Text04.SetActive(false);
             Text05.SetActive(true);

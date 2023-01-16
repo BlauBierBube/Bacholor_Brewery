@@ -11,6 +11,7 @@ namespace Oculus.Interaction
     public class Controller_03 : MonoBehaviour
     {
         [SerializeField] GameObject Holo_Area03;
+        [SerializeField] GameObject Holo_Area03_Station;
         [SerializeField] GameObject Holo_Area04;
 
         [SerializeField] GameObject Text01;
@@ -19,11 +20,22 @@ namespace Oculus.Interaction
         [SerializeField] TMP_Text Text02_T;
         [SerializeField] GameObject Text03;
         [SerializeField] GameObject Text04;
+        [SerializeField] GameObject Text05;
+        [SerializeField] GameObject Text06;
+        [SerializeField] GameObject Text07;
+        [SerializeField] GameObject Text08;
+        [SerializeField] GameObject Text09;
 
-        [SerializeField] GameObject Stammwuerze;
+        //[SerializeField] GameObject Stammwuerze;
+        [SerializeField] GameObject Behaelter;
+        [SerializeField] GameObject Spindel;
+        [SerializeField] GameObject Braukessel;
 
         [SerializeField] GameObject Forward_BT;
         [SerializeField] GameObject Backward_BT;
+
+        [SerializeField] GameObject Forward_BT2;
+        [SerializeField] GameObject Backward_BT2;
 
         [SerializeField] GameObject Button01;
         [SerializeField] GameObject Switch01;
@@ -51,7 +63,7 @@ namespace Oculus.Interaction
         // moveToPosition
         public bool moveTowards = false;
         private bool onFinish = false;
-        public float speed = 1f;
+        public float speed = 0.1f;
         public Vector3 targetPosition;
         private Vector3 startPosition;
 
@@ -67,12 +79,19 @@ namespace Oculus.Interaction
             //Debug.LogError("i = "+i);
             //Debug.LogError("count =" + count);
 
-            if (moveTowards == true && onFinish == false)
+            if (moveTowards == true && onFinish == false) // Move To Positin UP
             {
                 float step = speed * Time.deltaTime;
                 Brew03.transform.position = Vector3.MoveTowards(Brew03.transform.position, targetPosition, step);
-                if (Vector3.Distance(Brew03.transform.position, startPosition) < 0.001)
+                if (Vector3.Distance(Brew03.transform.position, targetPosition) < 0.001)
                     onFinish = true;
+            }
+            if (moveTowards == false && onFinish == true) // Move To Positin DOWN
+            {
+                float step = speed * Time.deltaTime;
+                Brew03.transform.position = Vector3.MoveTowards(Brew03.transform.position, startPosition, step);
+                if (Vector3.Distance(Brew03.transform.position, startPosition) < 0.001)
+                    onFinish = false;
             }
         }
 
@@ -90,6 +109,9 @@ namespace Oculus.Interaction
             //Debug.LogError("Step00 is aktiv");
             Text01.SetActive(true);
             Holo_Area03.SetActive(false);
+
+            PipeHole03.SetActive(false);
+            WaterAni03.SetActive(true);
 
             Brew03.SetActive(true);
             //Buttons and Index Number
@@ -111,7 +133,7 @@ namespace Oculus.Interaction
             s1 = false;
             count = 0;
             Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = true;
-            Switch01.GetComponent<CheckRotation>().enabled = true;
+            Switch01.GetComponent<TempRotConvert>().enabled = true;
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
             i = 1;
@@ -147,7 +169,7 @@ namespace Oculus.Interaction
                 Bubbles03.SetActive(true);
                 TankFront03.SetActive(false);
                 Switch01.layer = Default;
-                Switch01.GetComponent<CheckRotation>().enabled = false;
+                Switch01.GetComponent<TempRotConvert>().enabled = false;
                 Text02_T.fontStyle = FontStyles.Strikethrough;
                 s1 = true;
                 Counter();
@@ -167,14 +189,16 @@ namespace Oculus.Interaction
             Text02.SetActive(false);
             Text03.SetActive(true);
             TankHole03.SetActive(true);
-            TankFront03.SetActive(true);
+            //TankFront03.SetActive(true);
+            PipeHole03.SetActive(true);
+            WaterAni03.SetActive(false);
             Hopfen.SetActive(false);
             //Button and Index Number
             StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
             i = 2;
         }
-
+        /*
         public void Step06() // Stammwürze
         {
 
@@ -186,7 +210,8 @@ namespace Oculus.Interaction
             //Button and Index Number
             Invoke("ForwardBT", 2f);
             i = 3;
-        }
+        }*/
+        /*old
         public void Step07()
         {
             Stammwuerze.layer = Default;
@@ -199,8 +224,96 @@ namespace Oculus.Interaction
             //Button and Index Number
             StartCoroutine(WaitButton());
             i = 4;
+        }*/
+        public void Step07()
+        {
+            //Debug.LogError("Step07 is aktiv");
+            Text03.SetActive(false);
+            Text04.SetActive(true);
+            Holo_Area03_Station.SetActive(true);
+            //Button and Index Number
+            StartCoroutine(WaitButton());
+            i = 3;
         }
-        
+        public void Step08() // Holo Station
+        {
+            //Debug.LogError("Step08 is aktiv");
+
+            Text04.SetActive(false);
+            Text05.SetActive(true);
+            Holo_Area03_Station.SetActive(false);
+            //Button and Index Number
+            StartCoroutine(WaitButton_Station());
+            Invoke("ForwardBT_Station", 2f);
+            i = 4;
+        }
+        public void Step09() // Messbehaelter
+        {
+            //Debug.LogError("Step09 is aktiv");
+
+            Text05.SetActive(false);
+            Text06.SetActive(true);
+
+            //behälter Outline
+            //Probe Outline
+            //Braukessel Outline
+
+            Braukessel.layer = HighlightLayer;
+            Behaelter.layer = HighlightLayer;
+            Spindel.layer = HighlightLayer;
+            //Button and Index Number
+            StartCoroutine(WaitButton_Station());
+            Invoke("ForwardBT_Station", 2f);
+            i = 5;
+        }
+        public void Step10() // Messspindel
+        {
+            //Debug.LogError("Step10 is aktiv");
+
+            Text06.SetActive(false);
+            Text07.SetActive(true);
+            // Braukessel Outline off
+
+            //behälter Outline
+            //Spindel Outline
+            Braukessel.layer = Default;
+            Behaelter.layer = HighlightLayer;
+            Spindel.layer = HighlightLayer;
+
+            //Button and Index Number
+            StartCoroutine(WaitButton_Station());
+            Invoke("ForwardBT_Station", 2f);
+            i = 6;
+        }
+        public void Step11() // 
+        {
+            //Debug.LogError("Step11 is aktiv");
+
+            Text07.SetActive(false);
+            Text08.SetActive(true);
+
+            //behälter Outline off
+            //Spindel Outline off
+
+            Behaelter.layer = Default;
+            Spindel.layer = Default;
+
+            //Button and Index Number
+            StartCoroutine(WaitButton_Station());
+            Invoke("ForwardBT_Station", 2f);
+            i = 7;
+        }
+        public void Step12() // 
+        {
+            //Debug.LogError("Step12 is aktiv");
+            Text08.SetActive(false);
+            Text09.SetActive(true);
+            TankFront03.SetActive(true);
+            Holo_Area04.SetActive(true);
+            //Button and Index Number
+            StartCoroutine(WaitButton_Station());
+            i = 8;
+        }
         public void Counter()
         {
             count++;
@@ -217,8 +330,12 @@ namespace Oculus.Interaction
                 Step00,
                 Step01,
                 Step05,
-                Step06,
-                Step07
+                Step07,
+                Step08,
+                Step09,
+                Step10,
+                Step11,
+                Step12
             };
             i++;
             steps[i]();
@@ -229,8 +346,11 @@ namespace Oculus.Interaction
                 Step00,
                 Step01,
                 Step05,
-                Step06,
-                Step07
+                Step07,
+                Step08,
+                Step09,
+                Step10,
+                Step11
             };
 
             Text01.SetActive(false);
@@ -285,6 +405,20 @@ namespace Oculus.Interaction
         private void ForwardBT()
         {
             Forward_BT.SetActive(true);
+        }
+        IEnumerator WaitButton_Station()
+        {
+            //Debug.LogError("WaitButton is aktiv");
+            Forward_BT.SetActive(false);
+            Backward_BT.SetActive(false);
+            Forward_BT2.SetActive(false);
+            Backward_BT2.SetActive(false);
+            yield return new WaitForSeconds(2f);
+            Backward_BT2.SetActive(true);
+        }
+        private void ForwardBT_Station()
+        {
+            Forward_BT2.SetActive(true);
         }
     }
 }
