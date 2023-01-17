@@ -51,6 +51,10 @@ namespace Oculus.Interaction
         [SerializeField] GameObject Particels03;
         [SerializeField] Material BrewMat03;
 
+        //Material Swap
+        private Material[] originalMaterials;
+        [SerializeField] Material transparentMat;
+
         private int i = 0;
         private int Default;
         public int HighlightLayer = 6;
@@ -167,7 +171,8 @@ namespace Oculus.Interaction
             {
                 //Debug.LogError("Step03 is aktiv");
                 Bubbles03.SetActive(true);
-                TankFront03.SetActive(false);
+                //TankFront03.SetActive(false);
+                SaveAndChangeMaterials(TankFront03);
                 Switch01.layer = Default;
                 Switch01.GetComponent<TempRotConvert>().enabled = false;
                 Text02_T.fontStyle = FontStyles.Strikethrough;
@@ -308,7 +313,8 @@ namespace Oculus.Interaction
             //Debug.LogError("Step12 is aktiv");
             Text08.SetActive(false);
             Text09.SetActive(true);
-            TankFront03.SetActive(true);
+            //TankFront03.SetActive(true);
+            ResetMaterials(TankFront03);
             Holo_Area04.SetActive(true);
             //Button and Index Number
             StartCoroutine(WaitButton_Station());
@@ -367,10 +373,6 @@ namespace Oculus.Interaction
                 b1 = false;
                 s1 = false;
             }
-            if (i == 8)
-            {
-                TankFront03.SetActive(true);
-            }
             i--;
             steps[i]();
         }
@@ -419,6 +421,26 @@ namespace Oculus.Interaction
         private void ForwardBT_Station()
         {
             Forward_BT2.SetActive(true);
+        }
+
+        void SaveAndChangeMaterials(GameObject obj)
+        {
+            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+            originalMaterials = new Material[renderers.Length];
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                originalMaterials[i] = renderers[i].material;
+                renderers[i].material = transparentMat;
+            }
+        }
+
+        void ResetMaterials(GameObject obj)
+        {
+            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].material = originalMaterials[i];
+            }
         }
     }
 }

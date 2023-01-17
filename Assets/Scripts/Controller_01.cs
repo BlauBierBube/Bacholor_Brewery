@@ -11,7 +11,7 @@ namespace Oculus.Interaction {
     {
         [SerializeField] GameObject Holo_Area01;
         [SerializeField] GameObject Holo_Area02;
-
+        // Texte
         [SerializeField] GameObject Text01;
         [SerializeField] GameObject Text02;
         [SerializeField] TMP_Text Text02_W;
@@ -46,6 +46,9 @@ namespace Oculus.Interaction {
         [SerializeField] GameObject Bubbles;
         [SerializeField] GameObject Particels;
         [SerializeField] Material BrewMat;
+        //Material Swap
+        private Material[] originalMaterials;
+        [SerializeField] Material transparentMat;
 
         private int i = 0;
         private int Default;
@@ -231,7 +234,8 @@ namespace Oculus.Interaction {
                 Switch02.layer = Default;
                 Text04.SetActive(false);
                 Text05.SetActive(true);
-                TankFront.SetActive(false);
+                //TankFront.SetActive(false);
+                SaveAndChangeMaterials(TankFront);
                 Text04_M.fontStyle = FontStyles.Strikethrough;
                 rotate = true;
                 //Buttons and Index Number
@@ -245,8 +249,8 @@ namespace Oculus.Interaction {
             Text05.SetActive(false);
             Text06.SetActive(true);
             Holo_Area02.SetActive(true);
-            TankFront.SetActive(true);
-
+            //TankFront.SetActive(true);
+            ResetMaterials(TankFront);
             Bubbles.SetActive(false);
             Brew01.SetActive(false);
             rotate = false;
@@ -326,6 +330,45 @@ namespace Oculus.Interaction {
         private void ForwardBT()
         {
             Forward_BT.SetActive(true);
+        }
+        /*
+        private void SaveAndChangeMaterials(GameObject obj)
+        {
+            // Get all the materials of the GameObject
+            originalMaterials = obj.GetComponent<Renderer>().materials;
+
+            // Change all materials to the new material
+            Material[] newMaterials = new Material[originalMaterials.Length];
+            for (int i = 0; i < originalMaterials.Length; i++)
+            {
+                newMaterials[i] = transparentMat;
+            }
+            obj.GetComponent<Renderer>().materials = newMaterials;
+        }
+        private void ResetMaterials(GameObject obj)
+        {
+            // Replace all materials back to the original materials
+            obj.GetComponent<Renderer>().materials = originalMaterials;
+        }*/
+
+        void SaveAndChangeMaterials(GameObject obj)
+        {
+            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+            originalMaterials = new Material[renderers.Length];
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                originalMaterials[i] = renderers[i].material;
+                renderers[i].material = transparentMat;
+            }
+        }
+
+        void ResetMaterials(GameObject obj)
+        {
+            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].material = originalMaterials[i];
+            }
         }
     }
 }

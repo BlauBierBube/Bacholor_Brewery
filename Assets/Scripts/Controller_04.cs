@@ -38,6 +38,10 @@ namespace Oculus.Interaction
         [SerializeField] GameObject Partikel;
         [SerializeField] Material BrewMat04;
 
+        //Material Swap
+        private Material[] originalMaterials;
+        [SerializeField] Material transparentMat;
+
         private int i = 0;
         private int Default;
         public int HighlightLayer = 6;
@@ -132,7 +136,8 @@ namespace Oculus.Interaction
             if (s1 == false)
             {
                 //Debug.LogError("Step02 is aktiv");
-                TankFront.SetActive(false);
+                //TankFront.SetActive(false);
+                SaveAndChangeMaterials(TankFront);
                 Switch01.layer = Default;
                 Switch01.GetComponent<CheckRotation>().enabled = false;
                 // 
@@ -196,7 +201,8 @@ namespace Oculus.Interaction
             Brew04.SetActive(false);
             rotate = false;
             // Deaktivate Brew, Kegel
-            TankFront.SetActive(true);
+            //TankFront.SetActive(true);
+            ResetMaterials(TankFront);
             Brew04.SetActive(false);
             Kegel_1.SetActive(false);
             Kegel_2.SetActive(false);
@@ -288,6 +294,25 @@ namespace Oculus.Interaction
         private void ForwardBT()
         {
             Forward_BT.SetActive(true);
+        }
+        void SaveAndChangeMaterials(GameObject obj)
+        {
+            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+            originalMaterials = new Material[renderers.Length];
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                originalMaterials[i] = renderers[i].material;
+                renderers[i].material = transparentMat;
+            }
+        }
+
+        void ResetMaterials(GameObject obj)
+        {
+            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].material = originalMaterials[i];
+            }
         }
     }
 }

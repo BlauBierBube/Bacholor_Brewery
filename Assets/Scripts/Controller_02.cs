@@ -12,9 +12,9 @@ public class Controller_02 : MonoBehaviour
 
     [SerializeField] GameObject Text01;
     [SerializeField] GameObject Text02;
-    [SerializeField] TMP_Text Text02_L;
-    [SerializeField] TMP_Text Text02_T;
     [SerializeField] GameObject Text03;
+    [SerializeField] TMP_Text Text03_L;
+    [SerializeField] TMP_Text Text03_T;
     [SerializeField] GameObject Text04;
     [SerializeField] GameObject Text05;
     [SerializeField] TMP_Text Text05_A;
@@ -39,8 +39,14 @@ public class Controller_02 : MonoBehaviour
 
     [SerializeField] GameObject Fluid_P2;
     [SerializeField] GameObject Brew02;
+    [SerializeField] GameObject Treber;
     [SerializeField] GameObject Bubbles02;
     [SerializeField] Material BrewMat;
+
+    //Material Swap
+    private Material[] originalMaterials;
+    [SerializeField] Material transparentMat;
+
     private int i = 0;
     private int Default;
     public int HighlightLayer = 6;
@@ -57,6 +63,7 @@ public class Controller_02 : MonoBehaviour
     // moveToPosition
     public bool moveTowards = false;
     private bool onFinish = false;
+    private bool moveTreber = false;
     public float speed = 0.1f;
     public Vector3 targetPosition;
     private Vector3 startPosition;
@@ -96,6 +103,13 @@ public class Controller_02 : MonoBehaviour
             if (Vector3.Distance(Brew02.transform.position, startPosition) < 0.001)
                 onFinish = false;
         }
+        if (moveTreber == true) // Move To Treber Positin DOWN
+        {
+            float step = speed * Time.deltaTime;
+            Treber.transform.position = Vector3.MoveTowards(Treber.transform.position, startPosition, step);
+            if (Vector3.Distance(Treber.transform.position, startPosition) < 0.001)
+                onFinish = false;
+        }
     }
 
     public void StepOutOfHolo()
@@ -120,17 +134,28 @@ public class Controller_02 : MonoBehaviour
         Invoke("ForwardBT", 2f);
         i = 0;
     }
-
     public void Step01()
     {
         //Debug.LogError("Step01 is aktiv");
         Text01.SetActive(false);
         Text02.SetActive(true);
-
+        //TankFront.SetActive(false);
+        SaveAndChangeMaterials(TankFront);
+        Sinkboden.layer = HighlightLayer;
+        Invoke("ForwardBT", 2f);
+        StartCoroutine(WaitButton());
+        i = 1;
+    }
+    public void Step02()
+    {
+        //Debug.LogError("Step02 is aktiv");
+        Text02.SetActive(false);
+        Text03.SetActive(true);
+        Sinkboden.layer = default;
         Switch01.layer = HighlightLayer;
         Switch02.layer = HighlightLayer;
-        Text02_L.fontStyle = FontStyles.Normal;
-        Text02_T.fontStyle = FontStyles.Normal;
+        Text03_L.fontStyle = FontStyles.Normal;
+        Text03_T.fontStyle = FontStyles.Normal;
         count = 0;
         s1 = false;
         s2 = false;
@@ -138,16 +163,16 @@ public class Controller_02 : MonoBehaviour
         Switch02.GetComponent<TempRotConvert>().enabled = true;
         //Button Backward and Index Number
         StartCoroutine(WaitButton());
-        i = 1;
+        i = 2;
         if (s1 && s2 == true)
             Step04();
     }
 
-    public void Step02() // Switch 1 Läutern
+    public void Step03() // Switch 1 Umfüllen
     {
         if (s1 == false)
         {
-            //Debug.LogError("Step02 is aktiv");
+            //Debug.LogError("Step03 is aktiv");
             Switch01.layer = default;
             PipeHole.SetActive(false);
             Fluid_P2.SetActive(true);
@@ -159,14 +184,14 @@ public class Controller_02 : MonoBehaviour
 
             //Deaktivate Switch
             Switch01.GetComponent<CheckRotation>().enabled = false;
-            Text02_L.fontStyle = FontStyles.Strikethrough;
+            Text03_L.fontStyle = FontStyles.Strikethrough;
             //Index Number
             s1 = true;
             Counter01();
         }
     }
 
-    public void Step03() // Switch 2 Temp
+    public void Step04() // Switch 2 Temp
     {
         if (s2 == false)
         {
@@ -176,14 +201,14 @@ public class Controller_02 : MonoBehaviour
 
             //Deaktivate Switch
             Switch02.GetComponent<TempRotConvert>().enabled = false;
-            Text02_T.fontStyle = FontStyles.Strikethrough;
+            Text03_T.fontStyle = FontStyles.Strikethrough;
             //Index Number
             s2 = true;
             Counter01();
         }
     }
 
-    public void Step04() // Counter01 Finish
+    public void Step05() // Counter01 Finish
     {
         //Debug.LogError("Step04 is aktiv");
 
@@ -192,17 +217,7 @@ public class Controller_02 : MonoBehaviour
         Invoke("ForwardBT", 2f);
     }
 
-    public void Step05()
-    {
-        //Debug.LogError("Step05 is aktiv");
-        Text02.SetActive(false);
-        Text03.SetActive(true);
-        TankFront.SetActive(false);
-        Sinkboden.layer = HighlightLayer;
-        Invoke("ForwardBT", 2f);
-        StartCoroutine(WaitButton());
-        i = 2;
-    }
+
 
     public void Step06()
     {
@@ -221,8 +236,6 @@ public class Controller_02 : MonoBehaviour
         //Debug.LogError("Step07 is aktiv");
         Text04.SetActive(false);
         Text05.SetActive(true);
-        Sinkboden.layer = Default;
-
 
         //Aktivate Switch
         Switch03.layer = HighlightLayer;
@@ -238,6 +251,7 @@ public class Controller_02 : MonoBehaviour
         Switch03.layer = Default;
 
         moveTowards = false;
+        Treber.SetActive(true);
         //Deaktivate Switch
         Switch03.GetComponent<CheckRotation>().enabled = false;
         Text05_A.fontStyle = FontStyles.Strikethrough;
@@ -263,7 +277,7 @@ public class Controller_02 : MonoBehaviour
         Schacht.layer = HighlightLayer;
         Switch04.layer = Default;
         rotate = true;
-
+        moveTreber = true;
         //fluid go down
         //Deaktivate Switch
         Switch04.GetComponent<CheckRotation>().enabled = false;
@@ -278,7 +292,8 @@ public class Controller_02 : MonoBehaviour
         Text06.SetActive(false);
         Text07.SetActive(true);
         Schacht.layer = Default;
-        TankFront.SetActive(true);
+        //TankFront.SetActive(true);
+        ResetMaterials(TankFront);
         Bubbles02.SetActive(false);
         Brew02.SetActive(false);
         rotate = false;
@@ -318,7 +333,7 @@ public class Controller_02 : MonoBehaviour
         Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step05,
+                Step02,
                 Step06,
                 Step07,
                 Step09,
@@ -334,7 +349,7 @@ public class Controller_02 : MonoBehaviour
         Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step05,
+                Step02,
                 Step06,
                 Step07,
                 Step09,
@@ -363,5 +378,25 @@ public class Controller_02 : MonoBehaviour
     private void ForwardBT()
     {
         Forward_BT.SetActive(true);
+    }
+
+    void SaveAndChangeMaterials(GameObject obj)
+    {
+        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+        originalMaterials = new Material[renderers.Length];
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            originalMaterials[i] = renderers[i].material;
+            renderers[i].material = transparentMat;
+        }
+    }
+
+    void ResetMaterials(GameObject obj)
+    {
+        Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].material = originalMaterials[i];
+        }
     }
 }
