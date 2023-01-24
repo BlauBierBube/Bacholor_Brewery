@@ -229,7 +229,9 @@ public class Liquid : MonoBehaviour
 
 
         float maxValue = Mathf.Max(x, y);
+        //Debug.LogError(maxValue);
         float currentValue = (maxValue - 30) * 0.065f / (90 - 30) + 0.47f;
+        //Debug.LogError(currentValue);
         lastValue = Mathf.Max(lastValue, currentValue); //max current 0.57
         if (lastValue >= 0.57)
         {

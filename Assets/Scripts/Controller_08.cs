@@ -23,6 +23,8 @@ namespace Oculus.Interaction
 
         [SerializeField] GameObject Switch01;
 
+        [SerializeField] GameObject Finish;
+
         [SerializeField] Material BrewMat07;
 
         private int i = 0;
@@ -98,6 +100,7 @@ namespace Oculus.Interaction
             Text03.SetActive(false);
             Text04.SetActive(true);
             //Debug.LogError("Step04 is aktiv");
+            Finish.SetActive(true);
             StartCoroutine(WaitButton());
             i = 3;
         }
