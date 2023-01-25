@@ -38,6 +38,8 @@ namespace Oculus.Interaction
         [SerializeField] GameObject Partikel;
         [SerializeField] Material BrewMat04;
 
+        [SerializeField] AudioSource Machine;
+
         //Material Swap
         private Material[] originalMaterials;
         [SerializeField] Material transparentMat;
@@ -143,6 +145,7 @@ namespace Oculus.Interaction
                 // 
                 moveTowards = true;
                 Brew04.SetActive(true);
+                Machine.Play();
                 rotate = true;
 
 
@@ -200,6 +203,7 @@ namespace Oculus.Interaction
         {
             Brew04.SetActive(false);
             rotate = false;
+            Machine.Stop();
             // Deaktivate Brew, Kegel
             //TankFront.SetActive(true);
             ResetMaterials(TankFront);

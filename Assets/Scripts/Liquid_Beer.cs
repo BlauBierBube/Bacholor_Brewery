@@ -50,9 +50,11 @@ public class Liquid_Beer: MonoBehaviour
     [SerializeField] float AngleAdjust = 0.0012f;
     [SerializeField] float StartTiltAngle = 42f;
     [SerializeField] float EmptyAngle = 110f;
-    [SerializeField] GameObject Cup;
+    private GameObject Fluid;
+    private float y = 0;
+    private float z = 0;
 
-    private bool cup = true;
+    public bool cup = false;
     // Use this for initialization
     void Start()
     {
@@ -60,6 +62,7 @@ public class Liquid_Beer: MonoBehaviour
         CurrentFillAmount = StartFillAmount;
         if (CurrentFillAmount > EmptyAngle) empty = true;
         else empty = false;
+
     }
 
     private void OnValidate()
@@ -80,9 +83,8 @@ public class Liquid_Beer: MonoBehaviour
     }
     void Update()
     {
-        CheckCup();
-
-        if (empty == false && cup == false) // If glas is empty
+        
+        if (cup ==false) 
             CurrentFillAmount = MapAngleToValue();
         
 
@@ -216,6 +218,7 @@ public class Liquid_Beer: MonoBehaviour
         }
         return lowestVert.y;
     }
+    /*
 
     float MapAngleToValue()
     {
@@ -256,26 +259,120 @@ public class Liquid_Beer: MonoBehaviour
         if (x <= StartTiltAngle) x = StartTiltAngle;
         if (z <= StartTiltAngle) z = StartTiltAngle;
 
+        Debug.LogError("x = " + x);
+        Debug.LogError("y = " + axis.y);
+        Debug.LogError("z = " + z);
 
         float maxValue = Mathf.Max(x, z);
         //Debug.LogError("maxValue = " + maxValue);
         float StepPerDegree = ((MaxFillAmount - MinFillAmount) / (EmptyAngle - StartTiltAngle)-AngleAdjust);
         //Debug.LogError("Steps = " + StepPerDegree);
         float currentValue = (maxValue- StartTiltAngle) * StepPerDegree + MinFillAmount;
+        //Debug.LogError("CurrentValue = " + currentValue);
+        lastValue = Mathf.Max(lastValue, currentValue);
+        if (lastValue >= MaxFillAmount)
+        {
+            empty = true;
+        }
+        
+        if (isInCollider) // Scale for other Fluid to fill up
+        {
+            // Compare Scale of new Fluid and Scale it down so the Fluid is showing
+            float lastScale = Fluid.GetComponent<Liquid_Beer>().CurrentFillAmount;
+            float scale = 0.66f - (currentValue - MinFillAmount) * 5f;
+            float highestScale = Mathf.Min(scale, lastScale);
+            Fluid.GetComponent<Liquid_Beer>().CurrentFillAmount = highestScale;
+        }
+
+        return lastValue;
+
+    }*/
+
+    // test
+
+
+    float MapAngleToValue()
+    {
+        //Debug.LogError("Fluid transform");
+        float lastValue = CurrentFillAmount;
+
+        Vector3 parentRotation = transform.parent.transform.localRotation.eulerAngles;
+
+
+
+        float xRotation = Mathf.Repeat(parentRotation.x, 360);
+        if (xRotation > 180)
+        {
+            xRotation -= 360;
+        }
+        float yRotation = Mathf.Repeat(parentRotation.y, 360);
+        if (yRotation > 180)
+        {
+            yRotation -= 360;
+        }
+        float zRotation = Mathf.Repeat(parentRotation.z, 360);
+        if (zRotation > 180)
+        {
+            zRotation -= 360;
+        }
+
+        yRotation = Mathf.Abs(yRotation);
+        zRotation = Mathf.Abs(zRotation);
+
+        //Debug.LogError("y = " + yRotation);
+        //Debug.LogError("z = " + zRotation);
+        // Start by 0 count to 90 by 90 degree back to 0 by 180 degree -> Gible Lock Problem and no Quaternion is not the solution because the each Angle can be affected by other angles
+
+
+        if (y >= EmptyAngle) y = 180;
+        if (z >= EmptyAngle) z = 180;
+
+        if (y <= StartTiltAngle) y = StartTiltAngle;
+        if (z <= StartTiltAngle) z = StartTiltAngle;
+
+
+        float maxValue = Mathf.Max(y, z);
+        float StepPerDegree = ((MaxFillAmount - MinFillAmount) / (EmptyAngle - StartTiltAngle) - AngleAdjust);
+        float currentValue = (maxValue - StartTiltAngle) * StepPerDegree + MinFillAmount;
 
         lastValue = Mathf.Max(lastValue, currentValue);
         if (lastValue >= MaxFillAmount)
         {
             empty = true;
         }
+
+        //Debug.LogError("maxValue = " + maxValue);
+        //Debug.LogError("Steps = " + StepPerDegree);
+        //Debug.LogError("CurrentValue = " + currentValue);
+
         return lastValue;
     }
-    void CheckCup()
+    
+
+
+    // test ende
+
+    void OnTriggerStay(Collider other)
     {
-        if (Cup.GetComponent<Rigidbody>() !=null && cup == true)
+        if (other.gameObject.CompareTag("Fluid"))
         {
-            //Debug.LogError("Cup = false");
-            cup = false;
+            Fluid = other.gameObject;
+            //Debug.LogError("Is in Collider");
+            isInCollider = true;
         }
+
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Brew03"))
+        {
+            //Debug.LogError("Is in Collider");
+            empty = false;
+            CurrentFillAmount = MinFillAmount;
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        isInCollider = false;
     }
 }

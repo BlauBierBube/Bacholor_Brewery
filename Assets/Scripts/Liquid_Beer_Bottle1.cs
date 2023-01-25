@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class Liquid_Beer1: MonoBehaviour
+public class Liquid_Beer_Bottle1: MonoBehaviour
 {
+
+
     public enum UpdateMode { Normal, UnscaledTime }
     public UpdateMode updateMode;
 
@@ -41,7 +43,6 @@ public class Liquid_Beer1: MonoBehaviour
     bool empty = false;
     bool isInCollider = false;
 
-    private GameObject Fluid;
     [SerializeField] float StartFillAmount = 0.42f;
     [SerializeField] float CurrentFillAmount = 0.42f;
     [SerializeField] float MinFillAmount = 0.42f;
@@ -49,8 +50,10 @@ public class Liquid_Beer1: MonoBehaviour
     [SerializeField] float AngleAdjust = 0.0012f;
     [SerializeField] float StartTiltAngle = 42f;
     [SerializeField] float EmptyAngle = 110f;
+    [SerializeField] GameObject Cup;
+    private GameObject Fluid;
 
-    private bool cup = true;
+    public bool cup = true;
     // Use this for initialization
     void Start()
     {
@@ -58,6 +61,9 @@ public class Liquid_Beer1: MonoBehaviour
         CurrentFillAmount = StartFillAmount;
         if (CurrentFillAmount > EmptyAngle) empty = true;
         else empty = false;
+        //if (Cup != null)
+        //  cup = true;
+        CurrentFillAmount = MapAngleToValue();
     }
 
     private void OnValidate()
@@ -78,10 +84,8 @@ public class Liquid_Beer1: MonoBehaviour
     }
     void Update()
     {
-        if (transform.Find("Cup") == null)
-            cup = false;
-
-        if (empty == false && cup == false)
+        //Debug.LogError("cup = " + cup);
+        if (empty == false && cup == false) //
             CurrentFillAmount = MapAngleToValue();
         
 
@@ -261,49 +265,18 @@ public class Liquid_Beer1: MonoBehaviour
         float StepPerDegree = ((MaxFillAmount - MinFillAmount) / (EmptyAngle - StartTiltAngle)-AngleAdjust);
         //Debug.LogError("Steps = " + StepPerDegree);
         float currentValue = (maxValue- StartTiltAngle) * StepPerDegree + MinFillAmount;
-
         lastValue = Mathf.Max(lastValue, currentValue);
         if (lastValue >= MaxFillAmount)
         {
             empty = true;
         }
 
-        if (isInCollider) // Scale for other Fluid to fill up
-        {
-            // Compare Scale of new Fluid and Scale it down so the Fluid is showing
-            float lastScale = Fluid.GetComponent<Liquid_Beer1>().CurrentFillAmount;
-            float scale = 0.66f - (currentValue - MinFillAmount) * 4f;
-            float highestScale = Mathf.Min(scale, lastScale);
-
-
-            Fluid.GetComponent<Liquid_Beer1>().CurrentFillAmount = highestScale;
-
-        }
-
         return lastValue;
 
     }
-    void OnTriggerStay(Collider other)
+    public void CheckCup()
     {
-        if (other.gameObject.CompareTag("Fluid"))
-        {
-            Fluid = other.gameObject;
-            //Debug.LogError("Is in Collider");
-            isInCollider = true;
-        }
-
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Brew03"))
-        {
-            //Debug.LogError("Is in Collider");
-            empty = false;
-            CurrentFillAmount = MinFillAmount;
-        }
-    }
-    void OnTriggerExit(Collider other)
-    {
-        isInCollider = false;
+        Debug.LogError("Cup = checkup");
+        cup = false;
     }
 }

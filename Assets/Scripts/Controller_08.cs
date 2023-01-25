@@ -27,6 +27,8 @@ namespace Oculus.Interaction
 
         [SerializeField] Material BrewMat07;
 
+        [SerializeField] AudioSource Machine;
+
         private int i = 0;
         private int Default;
         public int HighlightLayer = 6;
@@ -76,7 +78,7 @@ namespace Oculus.Interaction
                 //Debug.LogError("Step02 is aktiv");
                 Switch01.layer = Default;
                 Switch01.GetComponent<CheckRotation>().enabled = false;
-
+                Machine.Play();
                 Text02_F.fontStyle = FontStyles.Strikethrough;
                 s1 = true;
                 Invoke("ForwardBT", 2f);
@@ -100,6 +102,7 @@ namespace Oculus.Interaction
             Text03.SetActive(false);
             Text04.SetActive(true);
             //Debug.LogError("Step04 is aktiv");
+            Machine.Stop();
             Finish.SetActive(true);
             StartCoroutine(WaitButton());
             i = 3;

@@ -1,48 +1,13 @@
 fileFormatVersion: 2
-guid: 72ee1145a5f4cfa4b9fe14fee8065745
+guid: 7b94d33890949314fa0e5f413a8d17de
 ModelImporter:
   serializedVersion: 22102
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Bottle
-    second: {fileID: 2100000, guid: b6477ff3de8640140975bf956369014a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Etikett
-    second: {fileID: 2100000, guid: ceabdf64fe7177349a2b209c217afcd5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Glas
-    second: {fileID: 2100000, guid: 2f3694d4214afd749b80750189e69e39, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Kronkorken
-    second: {fileID: 2100000, guid: 52f7a45216cb9f54db2b514ccf703175, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Metal
-    second: {fileID: 2100000, guid: 5cff1c25c26978444ba2d0bce1f654ba, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Plastic_Black
-    second: {fileID: 2100000, guid: f50269ee9abf86842a99fb2dd1722c0b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Plastic_White
-    second: {fileID: 2100000, guid: dcdea9b55482f1c40b97563dd4a00622, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
-    materialName: 1
-    materialSearch: 2
+    materialName: 0
+    materialSearch: 1
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4

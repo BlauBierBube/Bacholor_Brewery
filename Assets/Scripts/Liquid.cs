@@ -42,7 +42,6 @@ public class Liquid : MonoBehaviour
     [SerializeField]
     bool empty = false;
     bool isInCollider = false;
-    [SerializeField]
     GameObject Fluid;
 
 
@@ -70,9 +69,9 @@ public class Liquid : MonoBehaviour
     }
     void Update()
     {
-        if (empty == false) // If glas is empty
+        if (empty == false)
             fillAmount = MapAngleToValue();
-        
+
 
 
         float deltaTime = 0;
@@ -205,7 +204,7 @@ public class Liquid : MonoBehaviour
         return lowestVert.y;
     }
 
-    
+
     float MapAngleToValue()
     {
         float lastValue = fillAmount;
@@ -243,11 +242,11 @@ public class Liquid : MonoBehaviour
         {
             // Compare Scale of new Fluid and Scale it down so the Fluid is showing
             float lastScale = Fluid.GetComponent<Liquid>().fillAmount;
-            float scale = 0.66f - (currentValue-0.47f) * 4f;
+            float scale = 0.66f - (currentValue - 0.47f) * 4f;
             float highestScale = Mathf.Min(scale, lastScale);
-            
+
             Fluid.GetComponent<Liquid>().fillAmount = highestScale;
-            
+
             //0.66 start
             //0.42 Ende
 
@@ -264,22 +263,24 @@ public class Liquid : MonoBehaviour
         if (other.gameObject.CompareTag("Fluid"))
         {
             //Debug.LogError("Is in Collider");
+            Fluid = other.gameObject;
             isInCollider = true;
         }
-            
+
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Brew03"))
         {
             //Debug.LogError("Is in Collider");
-            empty = false;
+
             fillAmount = 0.47f;
+            empty = false;
         }
     }
     void OnTriggerExit(Collider other)
     {
         isInCollider = false;
     }
-        
+
 }

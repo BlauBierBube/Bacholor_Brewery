@@ -43,6 +43,8 @@ public class Controller_02 : MonoBehaviour
     [SerializeField] GameObject Bubbles02;
     [SerializeField] Material BrewMat;
 
+    [SerializeField] AudioSource Machine;
+
     //Material Swap
     private Material[] originalMaterials;
     [SerializeField] Material transparentMat;
@@ -276,6 +278,7 @@ public class Controller_02 : MonoBehaviour
         //Debug.LogError("Step10 is aktiv");
         Schacht.layer = HighlightLayer;
         Switch04.layer = Default;
+        Machine.Play();
         rotate = true;
         moveTreber = true;
         //fluid go down
@@ -293,6 +296,7 @@ public class Controller_02 : MonoBehaviour
         Text07.SetActive(true);
         Schacht.layer = Default;
         //TankFront.SetActive(true);
+        Machine.Stop();
         ResetMaterials(TankFront);
         Bubbles02.SetActive(false);
         Brew02.SetActive(false);
@@ -323,7 +327,7 @@ public class Controller_02 : MonoBehaviour
         count++;
         if (count == MaxCount)
         {
-            Step04();
+            Step05();
         }
     }
 

@@ -27,6 +27,8 @@ namespace Oculus.Interaction
 
         [SerializeField] GameObject Switch01;
 
+        [SerializeField] AudioSource Machine;
+
         private bool NRotate = false;
 
         private int i = 0;
@@ -91,6 +93,7 @@ namespace Oculus.Interaction
         {
             if(s1 == false)
             {
+                Machine.Play();
                 //Debug.LogError("Step02 is aktiv");
                 Switch01.layer = Default;
                 Switch01.GetComponent<CheckRotation>().enabled = false;
@@ -120,6 +123,7 @@ namespace Oculus.Interaction
             Text03.SetActive(false);
             Text04.SetActive(true);
             Holo_Area06.SetActive(true);
+            Machine.Stop();
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
             i = 3;

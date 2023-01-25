@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c805eb13e82c86747bfde4378798560b
+guid: 72ee1145a5f4cfa4b9fe14fee8065745
 ModelImporter:
   serializedVersion: 22102
   internalIDToNameTable: []
@@ -33,7 +33,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Plastic_Black
-    second: {fileID: 2100000, guid: 27a3a488449481e45b81b263332165a6, type: 2}
+    second: {fileID: 2100000, guid: f50269ee9abf86842a99fb2dd1722c0b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -82,7 +82,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1

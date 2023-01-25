@@ -46,6 +46,9 @@ namespace Oculus.Interaction {
         [SerializeField] GameObject Bubbles;
         [SerializeField] GameObject Particels;
         [SerializeField] Material BrewMat;
+
+        [SerializeField] AudioSource Machine;
+
         //Material Swap
         private Material[] originalMaterials;
         [SerializeField] Material transparentMat;
@@ -79,7 +82,9 @@ namespace Oculus.Interaction {
         // Start is called before the first frame update
         void Start()
         {
+
             startPosition = Brew01.transform.position; //for moveToPosition
+
         }
 
         // Update is called once per frame
@@ -236,6 +241,7 @@ namespace Oculus.Interaction {
                 Text05.SetActive(true);
                 //TankFront.SetActive(false);
                 SaveAndChangeMaterials(TankFront);
+                Machine.Play();
                 Text04_M.fontStyle = FontStyles.Strikethrough;
                 rotate = true;
                 //Buttons and Index Number
@@ -253,6 +259,7 @@ namespace Oculus.Interaction {
             ResetMaterials(TankFront);
             Bubbles.SetActive(false);
             Brew01.SetActive(false);
+            Machine.Stop();
             rotate = false;
             //Button and Index Number
             StartCoroutine(WaitButton());
@@ -279,6 +286,7 @@ namespace Oculus.Interaction {
             i++;
             steps[i]();
         }
+
         public void backward()
         {
             Action[] steps = new Action[]{
@@ -296,6 +304,7 @@ namespace Oculus.Interaction {
             i--;
             steps[i]();
         }
+
         IEnumerator ScaleObject(GameObject O, float S)
         {
             //Debug.LogError("Scale Active für " + O);

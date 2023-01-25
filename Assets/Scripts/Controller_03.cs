@@ -27,7 +27,8 @@ namespace Oculus.Interaction
         [SerializeField] GameObject Text09;
 
         //[SerializeField] GameObject Stammwuerze;
-        [SerializeField] GameObject Behaelter;
+        [SerializeField] GameObject Container;
+        [SerializeField] GameObject Sample;
         [SerializeField] GameObject Spindel;
         [SerializeField] GameObject Braukessel;
 
@@ -92,7 +93,7 @@ namespace Oculus.Interaction
             }
             if (moveTowards == false && onFinish == true) // Move To Positin DOWN
             {
-                float step = speed * Time.deltaTime;
+                float step = 0.1f*speed * Time.deltaTime;
                 Brew03.transform.position = Vector3.MoveTowards(Brew03.transform.position, startPosition, step);
                 if (Vector3.Distance(Brew03.transform.position, startPosition) < 0.001)
                     onFinish = false;
@@ -263,9 +264,9 @@ namespace Oculus.Interaction
             //Probe Outline
             //Braukessel Outline
 
+            Sample.layer = HighlightLayer;
             Braukessel.layer = HighlightLayer;
-            Behaelter.layer = HighlightLayer;
-            Spindel.layer = HighlightLayer;
+            Container.layer = HighlightLayer;
             //Button and Index Number
             StartCoroutine(WaitButton_Station());
             Invoke("ForwardBT_Station", 2f);
@@ -281,8 +282,9 @@ namespace Oculus.Interaction
 
             //behälter Outline
             //Spindel Outline
+            Sample.layer = Default;
             Braukessel.layer = Default;
-            Behaelter.layer = HighlightLayer;
+            Container.layer = HighlightLayer;
             Spindel.layer = HighlightLayer;
 
             //Button and Index Number
@@ -300,7 +302,7 @@ namespace Oculus.Interaction
             //behälter Outline off
             //Spindel Outline off
 
-            Behaelter.layer = Default;
+            Container.layer = Default;
             Spindel.layer = Default;
 
             //Button and Index Number
