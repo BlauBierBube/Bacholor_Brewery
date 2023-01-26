@@ -365,16 +365,11 @@ namespace Oculus.Interaction
             Text02.SetActive(false);
             Text03.SetActive(false);
             Text04.SetActive(false);
-            if (i > 5)
-            {
-                PipeHole03.SetActive(true);
-                TankHole03.SetActive(true);
-                Particels03.SetActive(false);
-                WaterAni03.SetActive(false);
-                Bubbles03.SetActive(false);
-                b1 = false;
-                s1 = false;
-            }
+            Text05.SetActive(false);
+            Text06.SetActive(false);
+            Text07.SetActive(false);
+            Text08.SetActive(false);
+            Text09.SetActive(false);
             i--;
             steps[i]();
         }

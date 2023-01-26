@@ -5,6 +5,7 @@ using UnityEngine;
 public class CupScript : MonoBehaviour
 {
     public GameObject Liquid;
+    public AudioSource BeerOpen;
 
     private void OnTriggerStay(Collider other)
     {
@@ -12,6 +13,7 @@ public class CupScript : MonoBehaviour
         {
             if (other.transform.eulerAngles.x >= 20 && other.transform.eulerAngles.x <= 90)
             {
+                BeerOpen.Play();
                 Transform currentParent = transform.parent;
                 Transform grandParent = currentParent.parent;
                 currentParent.parent = grandParent.parent;

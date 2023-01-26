@@ -79,7 +79,7 @@ namespace Oculus.Interaction
             //Debug.LogError("Step01 is aktiv");
             Text01.SetActive(false);
             Text02.SetActive(true);
-
+            s1 = false;
             Switch01.layer = HighlightLayer;
             Text02_T.fontStyle = FontStyles.Normal;
             Switch01.GetComponent<CheckRotation>().enabled = true;

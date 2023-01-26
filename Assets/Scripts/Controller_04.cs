@@ -124,7 +124,6 @@ namespace Oculus.Interaction
             Text02.SetActive(true);
             Text02_A.fontStyle = FontStyles.Normal;
             s1 = false;
-            s2 = false;
             Switch01.layer = HighlightLayer;
             Switch01.GetComponent<CheckRotation>().enabled = true;
             //Button Backward and Index Number
@@ -170,6 +169,7 @@ namespace Oculus.Interaction
         {
             Text03.SetActive(false);
             Text04.SetActive(true);
+            s2 = false;
             Switch02.layer = HighlightLayer;
             Text04_P.fontStyle = FontStyles.Normal;
             Switch02.GetComponent<CheckRotation>().enabled = true;
