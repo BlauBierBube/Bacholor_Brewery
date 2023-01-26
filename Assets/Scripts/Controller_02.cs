@@ -107,7 +107,7 @@ public class Controller_02 : MonoBehaviour
         }
         if (moveTreber == true) // Move To Treber Positin DOWN
         {
-            float step = speed * Time.deltaTime;
+            float step = 0.1f*speed * Time.deltaTime;
             Treber.transform.position = Vector3.MoveTowards(Treber.transform.position, startPosition, step);
             if (Vector3.Distance(Treber.transform.position, startPosition) < 0.001)
                 onFinish = false;

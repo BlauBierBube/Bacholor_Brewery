@@ -132,8 +132,8 @@ namespace Oculus.Interaction
                 //Debug.LogError("Step02 is aktiv");
                 Button01.layer = Default;
                 Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = false;
-                PipeHole.SetActive(false);
-                WaterAni06.SetActive(true);
+                // Remove Material for TankHole
+                RemoveMaterial();
                 Text02_B.fontStyle = FontStyles.Strikethrough;
                 b1 = true;
                 Counter();
@@ -149,9 +149,10 @@ namespace Oculus.Interaction
                 Switch01.GetComponent<CheckRotation>().enabled = false;
                 Switch01.layer = Default;
                 Text02_P.fontStyle = FontStyles.Strikethrough;
+                PipeHole.SetActive(false);
+                WaterAni06.SetActive(true);
                 Brew06.SetActive(true);
-                // Remove Material for TankHole
-                RemoveMaterial();
+                
                 // Scale Brew06
                 StartCoroutine(ScaleObject(Brew06, 8f));
 
@@ -163,7 +164,6 @@ namespace Oculus.Interaction
         public void Step04() // Count01 Finish
         {
             //Debug.LogError("Step04 is aktiv");
-            StartCoroutine(WaitButton());
             Invoke("ForwardBT", 2f);
         }
 
