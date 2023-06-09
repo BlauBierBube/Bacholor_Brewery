@@ -6,6 +6,7 @@ using System;
 using TMPro;
 
 
+
 namespace Oculus.Interaction
 {
     public class Controller_05 : MonoBehaviour
@@ -34,27 +35,40 @@ namespace Oculus.Interaction
         private int i = 0;
         private int Default;
         public int HighlightLayer = 6;
-        
+
         private bool moveTowards = false;
         public float N1Angle = 57;
         public float N2Angle = 161;
         private bool s1 = false;
         private void Start()
         {
-            
+
         }
         private void Update()
         {
-            
+
             if (moveTowards == true)
             {
-                Needle01.transform.localEulerAngles = new Vector3(0,N1Angle,0);
+                Needle01.transform.localEulerAngles = new Vector3(0, N1Angle, 0);
                 Needle02.transform.localEulerAngles = new Vector3(0, N2Angle, 0);
             }
-    }
+        }
+        public void Deaktivate()
+        {
+            Holo_Area05.SetActive(false);
+            Text01.SetActive(false);
+            Text02.SetActive(false);
+            Text03.SetActive(false);
+            Text04.SetActive(false);
 
+        }
+        public void Aktivate()
+        {
+            Holo_Area05.SetActive(true);
+            Text01.SetActive(true);
+        }
 
-    public void StepOutOfHolo()
+        public void StepOutOfHolo()
         {
             Holo_Area05.SetActive(true);
             Text01.SetActive(false);
@@ -91,7 +105,7 @@ namespace Oculus.Interaction
 
         public void Step02() // Switch01 Temp
         {
-            if(s1 == false)
+            if (s1 == false)
             {
                 Machine.Play();
                 //Debug.LogError("Step02 is aktiv");
@@ -153,7 +167,7 @@ namespace Oculus.Interaction
             Text02.SetActive(false);
             Text03.SetActive(false);
             Text04.SetActive(false);
-            
+
             i--;
             steps[i]();
         }

@@ -6,6 +6,7 @@ using System;
 using TMPro;
 
 
+
 namespace Oculus.Interaction
 {
     public class Controller_03 : MonoBehaviour
@@ -93,13 +94,26 @@ namespace Oculus.Interaction
             }
             if (moveTowards == false && onFinish == true) // Move To Positin DOWN
             {
-                float step = 0.1f*speed * Time.deltaTime;
+                float step = 0.1f * speed * Time.deltaTime;
                 Brew03.transform.position = Vector3.MoveTowards(Brew03.transform.position, startPosition, step);
                 if (Vector3.Distance(Brew03.transform.position, startPosition) < 0.001)
                     onFinish = false;
             }
         }
+        public void Deaktivate()
+        {
+            Holo_Area03.SetActive(false);
+            Text01.SetActive(false);
+            Text02.SetActive(false);
+            Text03.SetActive(false);
+            Text04.SetActive(false);
 
+        }
+        public void Aktivate()
+        {
+            Holo_Area03.SetActive(true);
+            Text01.SetActive(true);
+        }
         public void StepOutOfHolo()
         {
             Holo_Area03.SetActive(true);
@@ -186,7 +200,7 @@ namespace Oculus.Interaction
         {
             //Debug.LogError("Step04 is aktiv");
 
-            Invoke("ForwardBT",2f);
+            Invoke("ForwardBT", 2f);
         }
 
         public void Step05()

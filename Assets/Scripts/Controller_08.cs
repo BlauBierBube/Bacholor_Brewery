@@ -6,6 +6,7 @@ using System;
 using TMPro;
 
 
+
 namespace Oculus.Interaction
 {
     public class Controller_08 : MonoBehaviour
@@ -37,6 +38,19 @@ namespace Oculus.Interaction
 
 
 
+        public void Deaktivate()
+        {
+            Holo_Area08.SetActive(false);
+            Text01.SetActive(false);
+            Text02.SetActive(false);
+            Text03.SetActive(false);
+            Text04.SetActive(false);
+        }
+        public void Aktivate()
+        {
+            Holo_Area08.SetActive(true);
+            Text01.SetActive(true);
+        }
         public void StepOutOfHolo()
         {
             Holo_Area08.SetActive(true);

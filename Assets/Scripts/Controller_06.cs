@@ -67,7 +67,7 @@ namespace Oculus.Interaction
         {
             startPosition = Brew06.transform.position; //for moveToPosition
         }
-        
+
 
         // Update is called once per frame
         void Update()
@@ -83,6 +83,20 @@ namespace Oculus.Interaction
                 if (Vector3.Distance(Brew06.transform.position, startPosition) < 0.001)
                     onFinish = true;
             }*/
+        }
+        public void Deaktivate()
+        {
+            Holo_Area06.SetActive(false);
+            Text01.SetActive(false);
+            Text02.SetActive(false);
+            Text03.SetActive(false);
+            Text04.SetActive(false);
+            Text05.SetActive(false);
+        }
+        public void Aktivate()
+        {
+            Holo_Area06.SetActive(true);
+            Text01.SetActive(true);
         }
 
         public void StepOutOfHolo()
@@ -118,7 +132,7 @@ namespace Oculus.Interaction
             Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = true;
             Text02_B.fontStyle = FontStyles.Normal;
             Text02_P.fontStyle = FontStyles.Normal;
-            
+
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
             i = 1;
@@ -152,7 +166,7 @@ namespace Oculus.Interaction
                 PipeHole.SetActive(false);
                 WaterAni06.SetActive(true);
                 Brew06.SetActive(true);
-                
+
                 // Scale Brew06
                 StartCoroutine(ScaleObject(Brew06, 8f));
 
@@ -183,10 +197,10 @@ namespace Oculus.Interaction
             StartCoroutine(WaitButton());
             i = 2;
         }
-        
+
         public void Step06() // Switch02 Temp
         {
-            if(s2 == false)
+            if (s2 == false)
             {
                 //Debug.LogError("Step06 is aktiv");
                 Switch02.layer = Default;
@@ -271,7 +285,7 @@ namespace Oculus.Interaction
             while (scaleFactor < scaleMax)
             {
                 // Scale the object by the current scale factor
-                O.transform.localScale = new Vector3(O.transform.localScale.x,scaleFactor, O.transform.localScale.z);
+                O.transform.localScale = new Vector3(O.transform.localScale.x, scaleFactor, O.transform.localScale.z);
 
                 // Wait for a short amount of time before scaling again
                 yield return new WaitForSeconds(0.05f);

@@ -6,6 +6,7 @@ using System;
 using TMPro;
 
 
+
 namespace Oculus.Interaction
 {
     public class Controller_04 : MonoBehaviour
@@ -95,7 +96,22 @@ namespace Oculus.Interaction
                     onFinish = false;
             }
         }
+        public void Deaktivate()
+        {
+            Holo_Area04.SetActive(false);
+            Text01.SetActive(false);
+            Text02.SetActive(false);
+            Text03.SetActive(false);
+            Text04.SetActive(false);
+            Text05.SetActive(false);
+            Text06.SetActive(false);
 
+        }
+        public void Aktivate()
+        {
+            Holo_Area04.SetActive(true);
+            Text01.SetActive(true);
+        }
         public void StepOutOfHolo()
         {
             Holo_Area04.SetActive(true);
@@ -103,6 +119,8 @@ namespace Oculus.Interaction
             Text02.SetActive(false);
             Text03.SetActive(false);
             Text04.SetActive(false);
+            Text05.SetActive(false);
+            Text06.SetActive(false);
         }
 
         public void Step00()

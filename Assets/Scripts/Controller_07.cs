@@ -5,9 +5,9 @@ using UnityEngine.Events;
 using System;
 using TMPro;
 
-
 namespace Oculus.Interaction
 {
+
     public class Controller_07 : MonoBehaviour
     {
         [SerializeField] GameObject Holo_Area07;
@@ -75,6 +75,20 @@ namespace Oculus.Interaction
                 if (Vector3.Distance(Brew07.transform.position, startPosition) < 0.001)
                     onFinish = true;
             }*/
+        }
+
+        public void Deaktivate()
+        {
+            Holo_Area07.SetActive(false);
+            Text01.SetActive(false);
+            Text02.SetActive(false);
+            Text03.SetActive(false);
+            Text04.SetActive(false);
+        }
+        public void Aktivate()
+        {
+            Holo_Area07.SetActive(true);
+            Text01.SetActive(true);
         }
 
         public void StepOutOfHolo()

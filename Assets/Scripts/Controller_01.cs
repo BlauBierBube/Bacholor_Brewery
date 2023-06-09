@@ -5,8 +5,8 @@ using UnityEngine.Events;
 using System;
 using TMPro;
 
-
-namespace Oculus.Interaction { 
+namespace Oculus.Interaction
+{
     public class Controller_01 : MonoBehaviour
     {
         [SerializeField] GameObject Holo_Area01;
@@ -102,11 +102,25 @@ namespace Oculus.Interaction {
             {
                 float step = speed * Time.deltaTime;
                 Brew01.transform.position = Vector3.MoveTowards(Brew01.transform.position, targetPosition, step);
-                if(Vector3.Distance(Brew01.transform.position, startPosition) <0.001)
+                if (Vector3.Distance(Brew01.transform.position, startPosition) < 0.001)
                     onFinish = true;
             }
         }
-
+        public void Deaktivate()
+        {
+            Holo_Area02.SetActive(false);
+            Text01.SetActive(false);
+            Text02.SetActive(false);
+            Text03.SetActive(false);
+            Text04.SetActive(false);
+            Text05.SetActive(false);
+            Text06.SetActive(false);
+        }
+        public void Aktivate()
+        {
+            Holo_Area01.SetActive(true);
+            Text01.SetActive(true);
+        }
         public void StepOutOfHolo()
         {
             Holo_Area01.SetActive(true);
@@ -120,6 +134,7 @@ namespace Oculus.Interaction {
 
         public void Step00()
         {
+            GameObject.FindObjectOfType<ActiveStation>().activeState(0);
             //Debug.LogError("Step00 is aktiv");
             Text01.SetActive(true);
             Holo_Area01.SetActive(false);
@@ -143,7 +158,7 @@ namespace Oculus.Interaction {
             b1 = false;
             b2 = false;
             count = 0;
-            Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled= true;
+            Button01.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = true;
             Button02.transform.parent.transform.parent.gameObject.GetComponent<InteractableUnityEventWrapper>().enabled = true;
             Switch01.GetComponent<TempRotConvert>().enabled = true;
             //Button Backward and Index Number
@@ -174,7 +189,7 @@ namespace Oculus.Interaction {
                 Counter();
             }
         }
-    
+
 
         public void Step03() // Button 2
         {
@@ -217,7 +232,7 @@ namespace Oculus.Interaction {
             //Button and Index Number
             Invoke("ForwardBT", 2f);
         }
-        public void Step06() 
+        public void Step06()
         {
             //Debug.LogError("Step06 is aktiv");
             Text03.SetActive(false);
@@ -294,7 +309,7 @@ namespace Oculus.Interaction {
                 Step01,
                 Step06
             };
-        
+
             Text01.SetActive(false);
             Text02.SetActive(false);
             Text03.SetActive(false);
