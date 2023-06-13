@@ -106,11 +106,14 @@ namespace Oculus.Interaction
         {
             if (index >= 0 && index < DisplayObjects.Length)
             {
+                /*
                 foreach (GameObject obj in DisplayObjects)
                 {
                     ResetMaterials(obj);
                 }
+                
                 SaveAndChangeMaterials(DisplayObjects[index]);
+                */
                 DeaktivateAll();
 
                 if (ControllerList[index] is Controller_01 controller01)
