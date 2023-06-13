@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [ExecuteInEditMode]
 public class Liquid : MonoBehaviour
 {
     public enum UpdateMode { Normal, UnscaledTime }
     public UpdateMode updateMode;
+
+    public UnityEvent SelectEnter;
 
     [SerializeField]
     float MaxWobble = 0.03f;
@@ -246,7 +249,7 @@ public class Liquid : MonoBehaviour
             float highestScale = Mathf.Min(scale, lastScale);
 
             Fluid.GetComponent<Liquid>().fillAmount = highestScale;
-
+            SelectEnter.Invoke();
             //0.66 start
             //0.42 Ende
 
@@ -282,5 +285,7 @@ public class Liquid : MonoBehaviour
     {
         isInCollider = false;
     }
+
+
 
 }

@@ -23,7 +23,9 @@ namespace Oculus.Interaction
         [SerializeField] GameObject Text04;
         [SerializeField] GameObject Text05;
         [SerializeField] GameObject Text06;
+        [SerializeField] TMP_Text Text06_B;
         [SerializeField] GameObject Text07;
+        [SerializeField] TMP_Text Text07_S;
         [SerializeField] GameObject Text08;
         [SerializeField] GameObject Text09;
 
@@ -66,6 +68,8 @@ namespace Oculus.Interaction
         private float MaxCount = 2;
         private bool b1 = false;
         private bool s1 = false;
+        private bool h1 = false;
+        private bool m1 = false;
         // moveToPosition
         public bool moveTowards = false;
         private bool onFinish = false;
@@ -283,10 +287,18 @@ namespace Oculus.Interaction
             Container.layer = HighlightLayer;
             //Button and Index Number
             StartCoroutine(WaitButton_Station());
-            Invoke("ForwardBT_Station", 2f);
+
             i = 5;
         }
-        public void Step10() // Messspindel
+        public void Step10() // Messbehaelter
+        {
+
+            Sample.layer = Default;
+            Braukessel.layer = Default;
+            Invoke("ForwardBT_Station", 2f);
+        }
+
+        public void Step11() // Messspindel
         {
             //Debug.LogError("Step10 is aktiv");
 
@@ -296,35 +308,34 @@ namespace Oculus.Interaction
 
             //behälter Outline
             //Spindel Outline
-            Sample.layer = Default;
-            Braukessel.layer = Default;
+
             Container.layer = HighlightLayer;
             Spindel.layer = HighlightLayer;
 
             //Button and Index Number
             StartCoroutine(WaitButton_Station());
-            Invoke("ForwardBT_Station", 2f);
             i = 6;
         }
-        public void Step11() // 
+        public void Step12() // Messspindel
+        {
+
+            Container.layer = Default;
+            Spindel.layer = Default;
+            Invoke("ForwardBT_Station", 2f);
+        }
+        public void Step13() // 
         {
             //Debug.LogError("Step11 is aktiv");
 
             Text07.SetActive(false);
             Text08.SetActive(true);
 
-            //behälter Outline off
-            //Spindel Outline off
-
-            Container.layer = Default;
-            Spindel.layer = Default;
-
             //Button and Index Number
             StartCoroutine(WaitButton_Station());
             Invoke("ForwardBT_Station", 2f);
             i = 7;
         }
-        public void Step12() // 
+        public void Step14() // 
         {
             //Debug.LogError("Step12 is aktiv");
             Text08.SetActive(false);
@@ -355,9 +366,9 @@ namespace Oculus.Interaction
                 Step07,
                 Step08,
                 Step09,
-                Step10,
                 Step11,
-                Step12
+                Step13,
+                Step14
             };
             i++;
             steps[i]();
@@ -371,8 +382,9 @@ namespace Oculus.Interaction
                 Step07,
                 Step08,
                 Step09,
-                Step10,
-                Step11
+                Step11,
+                Step13,
+                Step14
             };
 
             Text01.SetActive(false);

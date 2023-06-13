@@ -442,6 +442,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 463108736043919002}
   - {fileID: 409252806506232326}
   - {fileID: 409252806158142513}
   - {fileID: 409252806763952910}
@@ -720,6 +721,7 @@ GameObject:
   - component: {fileID: 409252806506232323}
   - component: {fileID: 409252806506232322}
   - component: {fileID: 409252806506232321}
+  - component: {fileID: 4040471671409959016}
   - component: {fileID: 409252806506232320}
   - component: {fileID: 409252806506232351}
   m_Layer: 0
@@ -843,9 +845,30 @@ MonoBehaviour:
   _transferOnSecondSelection: 0
   _addNewPointsToFront: 0
   _forwardElement: {fileID: 0}
-  _oneGrabTransformer: {fileID: 409252806506232320}
+  _oneGrabTransformer: {fileID: 4040471671409959016}
   _twoGrabTransformer: {fileID: 0}
   _maxGrabPoints: -1
+--- !u!114 &4040471671409959016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409252806506232349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7c650c6d21d634a8deedf885a29be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pivotTransform: {fileID: 463108736043919002}
+  referencePoint: {x: 0, y: 0, z: 0}
+  _constraints:
+    MinAngle:
+      Constrain: 1
+      Value: -70
+    MaxAngle:
+      Constrain: 1
+      Value: 0
 --- !u!114 &409252806506232320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1388,6 +1411,37 @@ MonoBehaviour:
     - {x: 0.0667735, y: 0.035293367, z: -0.38802245, w: 0.91854995}
     - {x: -0.06632043, y: 0.026616484, z: -0.3404027, w: 0.9375602}
     - {x: 0.0014902353, y: -0.04772441, z: -0.22654298, w: 0.9728301}
+--- !u!1 &6924251191271255066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 463108736043919002}
+  m_Layer: 0
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &463108736043919002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6924251191271255066}
+  m_LocalRotation: {x: 0.953717, y: -0, z: 0.30070576, w: 0}
+  m_LocalPosition: {x: 0.06374821, y: -0.04146958, z: -0.08478273}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 409252805354549179}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 180, y: -35, z: 0}
 --- !u!1 &8576297510810628360
 GameObject:
   m_ObjectHideFlags: 0
