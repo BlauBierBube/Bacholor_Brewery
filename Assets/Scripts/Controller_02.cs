@@ -125,11 +125,22 @@ namespace Oculus.Interaction
             Text05.SetActive(false);
             Text06.SetActive(false);
             Text07.SetActive(false);
+            rotate = false;
+            Forward_BT.SetActive(false);
+            Backward_BT.SetActive(false);
+
+            PipeHole.SetActive(true);
+            TankFront.SetActive(true);
+
+            Fluid_P2.SetActive(false);
+            Brew02.SetActive(false);
+            Treber.SetActive(false);
+            Bubbles02.SetActive(false);
+            Machine.Stop();
         }
         public void Aktivate()
         {
             Holo_Area02.SetActive(true);
-            Text01.SetActive(true);
         }
 
         public void StepOutOfHolo()
@@ -147,6 +158,7 @@ namespace Oculus.Interaction
         public void Step00()
         {
             //Debug.LogError("Step00 is aktiv");
+            GameObject.FindObjectOfType<ActiveStation>().activeState(1);
             Text01.SetActive(true);
             Holo_Area02.SetActive(false);
 
@@ -331,7 +343,8 @@ namespace Oculus.Interaction
             //Debug.LogError("Step12 is aktiv");
             Text07.SetActive(false);
             Text08.SetActive(true);
-            Holo_Area03.SetActive(true);
+            //Holo_Area03.SetActive(true);
+            FindObjectOfType<Controller_03>().Aktivate();
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
             i = 7;

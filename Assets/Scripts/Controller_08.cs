@@ -45,11 +45,14 @@ namespace Oculus.Interaction
             Text02.SetActive(false);
             Text03.SetActive(false);
             Text04.SetActive(false);
+
+            Forward_BT.SetActive(false);
+            Backward_BT.SetActive(false);
+            Machine.Stop();
         }
         public void Aktivate()
         {
             Holo_Area08.SetActive(true);
-            Text01.SetActive(true);
         }
         public void StepOutOfHolo()
         {
@@ -117,7 +120,7 @@ namespace Oculus.Interaction
             Text04.SetActive(true);
             //Debug.LogError("Step04 is aktiv");
             Machine.Stop();
-            Finish.SetActive(true);
+            //Finish.SetActive(true);
             StartCoroutine(WaitButton());
             i = 3;
         }

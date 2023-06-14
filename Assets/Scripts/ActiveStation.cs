@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Oculus.Interaction
 {
     public class ActiveStation : MonoBehaviour
@@ -10,8 +9,7 @@ namespace Oculus.Interaction
         public GameObject[] DisplayObjects;
         public MonoBehaviour[] ControllerList;
 
-        //Material Swap
-        private Material[] originalMaterials;
+        [SerializeField] Material deactivateMat;
         [SerializeField] Material activeMat;
 
         [SerializeField] GameObject Cont_01;
@@ -23,12 +21,10 @@ namespace Oculus.Interaction
         [SerializeField] GameObject Cont_07;
         [SerializeField] GameObject Cont_08;
 
-
-        // Start is called before the first frame update
         void Start()
         {
-            // Initialize the array with a size of 8
             DisplayObjects = new GameObject[8];
+            ControllerList = new MonoBehaviour[8];
 
             // Assign GameObject references to the array elements
             DisplayObjects[0] = GameObject.Find("Display_St_01");
@@ -39,10 +35,6 @@ namespace Oculus.Interaction
             DisplayObjects[5] = GameObject.Find("Display_St_06");
             DisplayObjects[6] = GameObject.Find("Display_St_07");
             DisplayObjects[7] = GameObject.Find("Display_St_08");
-
-
-
-            ControllerList = new MonoBehaviour[8];
 
             // Assign GameObject references to the array elements
             ControllerList[0] = Cont_01.GetComponent<Controller_01>();
@@ -55,15 +47,16 @@ namespace Oculus.Interaction
             ControllerList[7] = Cont_08.GetComponent<Controller_08>();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
 
-        }
+
         void DeaktivateAll()
         {
             foreach (MonoBehaviour m in ControllerList)
             {
+                foreach (GameObject obj in DisplayObjects)
+                {
+                    DeactivateMat(obj);
+                }
                 if (m != null)
                 {
                     if (m is Controller_01 controller01)
@@ -106,15 +99,8 @@ namespace Oculus.Interaction
         {
             if (index >= 0 && index < DisplayObjects.Length)
             {
-                /*
-                foreach (GameObject obj in DisplayObjects)
-                {
-                    ResetMaterials(obj);
-                }
-                
-                SaveAndChangeMaterials(DisplayObjects[index]);
-                */
                 DeaktivateAll();
+                ActivateMat(DisplayObjects[index]);
 
                 if (ControllerList[index] is Controller_01 controller01)
                 {
@@ -150,25 +136,25 @@ namespace Oculus.Interaction
                 }
             }
         }
-
-        void SaveAndChangeMaterials(GameObject obj)
+         
+        void DeactivateMat(GameObject obj)
         {
-            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
-            originalMaterials = new Material[renderers.Length];
-            for (int i = 0; i < renderers.Length; i++)
+            Renderer[] renderers = obj.GetComponents<Renderer>();
+            foreach (Renderer renderer in renderers)
             {
-                originalMaterials[i] = renderers[i].material;
-                renderers[i].material = activeMat;
+                renderer.material = deactivateMat;
             }
+            //Debug.Log(obj.name + " deactivated Mat");
         }
 
-        void ResetMaterials(GameObject obj)
+        void ActivateMat(GameObject obj)
         {
-            Renderer[] renderers = obj.GetComponentsInChildren<Renderer>();
-            for (int i = 0; i < renderers.Length; i++)
+            Renderer[] renderers = obj.GetComponents<Renderer>();
+            foreach (Renderer renderer in renderers)
             {
-                renderers[i].material = originalMaterials[i];
+                renderer.material = activeMat;
             }
+            //Debug.Log(obj.name + " activated Mat");
         }
     }
 }

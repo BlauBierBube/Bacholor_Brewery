@@ -60,12 +60,13 @@ namespace Oculus.Interaction
             Text02.SetActive(false);
             Text03.SetActive(false);
             Text04.SetActive(false);
-
+            Forward_BT.SetActive(false);
+            Backward_BT.SetActive(false);
+            Machine.Stop();
         }
         public void Aktivate()
         {
             Holo_Area05.SetActive(true);
-            Text01.SetActive(true);
         }
 
         public void StepOutOfHolo()
@@ -136,7 +137,8 @@ namespace Oculus.Interaction
         {
             Text03.SetActive(false);
             Text04.SetActive(true);
-            Holo_Area06.SetActive(true);
+            //Holo_Area06.SetActive(true);
+            FindObjectOfType<Controller_06>().Aktivate();
             Machine.Stop();
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
