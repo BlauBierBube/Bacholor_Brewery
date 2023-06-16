@@ -4979,7 +4979,6 @@ GameObject:
   - component: {fileID: 5329967900096246545}
   - component: {fileID: 5329967900096246546}
   - component: {fileID: 5329967900096246544}
-  - component: {fileID: 5329967900096246547}
   m_Layer: 0
   m_Name: Zapfhahn_Hebel
   m_TagString: Untagged
@@ -5115,6 +5114,7 @@ MonoBehaviour:
   TagetArea: 20
   TagetRange: 5
   AlwaysAktive: 1
+  Grabbed: 0
   onSolved:
     m_PersistentCalls:
       m_Calls:
@@ -5145,6 +5145,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  rotationDuration: 2
 --- !u!114 &5329967900096246544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5166,43 +5168,3 @@ MonoBehaviour:
     MaxAngle:
       Constrain: 1
       Value: 20
---- !u!114 &5329967900096246547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7440064366157634498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a7676b01585ce43908639a27765dfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxInteractors: -1
-  _maxSelectingInteractors: -1
-  _pointableElement: {fileID: 5329967900096246545}
-  _relativeTo: {fileID: 2281178539636500834}
-  _rigidbody: {fileID: 5329967900096246551}
-  _resetGrabOnGrabsUpdated: 1
-  _physicsGrabbable: {fileID: 0}
-  _scoringModifier:
-    _maxDistance: 0.1
-    _positionRotationWeight: 0
-  _supportedGrabTypes: 3
-  _pinchGrabRules:
-    _thumbRequirement: 2
-    _indexRequirement: 1
-    _middleRequirement: 1
-    _ringRequirement: 0
-    _pinkyRequirement: 0
-    _unselectMode: 0
-  _palmGrabRules:
-    _thumbRequirement: 1
-    _indexRequirement: 2
-    _middleRequirement: 2
-    _ringRequirement: 2
-    _pinkyRequirement: 1
-    _unselectMode: 0
-  _movementProvider: {fileID: 0}
-  _handAligment: 0
-  _handGrabPoints: []

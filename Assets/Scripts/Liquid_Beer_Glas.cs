@@ -52,8 +52,6 @@ public class Liquid_Beer_Glas : MonoBehaviour
     [SerializeField] float EmptyAngle = 110f;
     private GameObject Fluid;
 
-
-    public bool cup = false;
     // Use this for initialization
     void Start()
     {
@@ -371,8 +369,5 @@ public class Liquid_Beer_Glas : MonoBehaviour
         isInCollider = false;
     }
     */
-    public void CheckCup()
-    {
-        cup = false;
-    }
+
 }
