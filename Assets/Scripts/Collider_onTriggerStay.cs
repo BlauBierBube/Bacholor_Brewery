@@ -9,10 +9,15 @@ public class Collider_onTriggerStay : MonoBehaviour
     public UnityEvent OnEnter;
     public UnityEvent OnExit;
 
+    private bool enter = false;
+    private bool exit = false;
+    private bool stay = false;
     private void Start()
     {
 
     }
+
+
     void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Fluid"))

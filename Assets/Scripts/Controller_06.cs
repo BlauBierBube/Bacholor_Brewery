@@ -100,7 +100,8 @@ namespace Oculus.Interaction
             TankFront.SetActive(true);
             WaterAni06.SetActive(false);
             Brew06.SetActive(false);
-            AddMaterialBack();
+
+            //AddMaterialBack();
         }
         public void Aktivate()
         {

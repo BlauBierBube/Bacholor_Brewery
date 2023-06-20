@@ -36,7 +36,7 @@ namespace Oculus.Interaction
         [SerializeField] GameObject Brew04;
         [SerializeField] GameObject Kegel_1;
         [SerializeField] GameObject Kegel_2;
-        [SerializeField] GameObject Partikel;
+
         [SerializeField] Material BrewMat04;
 
         [SerializeField] AudioSource Machine;
@@ -113,7 +113,7 @@ namespace Oculus.Interaction
             Brew04.SetActive(false);
             Kegel_1.SetActive(false);
             Kegel_2.SetActive(false);
-            Partikel.SetActive(false);
+
             Machine.Stop();
 
         }

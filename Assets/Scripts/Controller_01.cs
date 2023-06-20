@@ -108,7 +108,7 @@ namespace Oculus.Interaction
         }
         public void Deaktivate()
         {
-            Holo_Area02.SetActive(false);
+            Holo_Area01.SetActive(false);
             Text01.SetActive(false);
             Text02.SetActive(false);
             Text03.SetActive(false);

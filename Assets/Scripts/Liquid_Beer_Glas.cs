@@ -52,6 +52,8 @@ public class Liquid_Beer_Glas : MonoBehaviour
     [SerializeField] float EmptyAngle = 110f;
     private GameObject Fluid;
 
+
+
     // Use this for initialization
     void Start()
     {
@@ -83,17 +85,8 @@ public class Liquid_Beer_Glas : MonoBehaviour
     }
     void Update()
     {
+        CurrentFillAmount = MapAngleToValue();
         
-
-        if(isInCollider==true)
-                fillUp();
-        if (isInCollider == false)
-            CurrentFillAmount = MapAngleToValue();
-            
-
-
-
-
         float deltaTime = 0;
         switch (updateMode)
         {
@@ -227,147 +220,107 @@ public class Liquid_Beer_Glas : MonoBehaviour
 
     float MapAngleToValue()
     {
-        // Scales the CurrentFillAmount "up" so the Liquide goes down when the Bottle is Tilted
-        // Uses the Y and Z Angle of the Parent, X Angle gives trouble because of the Gible Lock Problem 
+        // Scales the CurrentFillAmount "up" so the Liquid goes down when the Bottle is Tilted
+        // Uses the Y and Z Angle of the Parent, X Angle gives trouble because of the Gimbal Lock Problem
 
         float lastValue = CurrentFillAmount;
 
         Vector3 parentRotation = transform.parent.transform.localRotation.eulerAngles;
 
+        // Adjust the Z rotation to be clamped between 0 and 180 degrees
+        float zRotation = Mathf.Clamp(parentRotation.z, 0f, 180f);
 
+        // Apply the adjusted rotation to the child object
+        transform.localRotation = Quaternion.Euler(parentRotation.x, parentRotation.y, zRotation);
 
-        float xRotation = Mathf.Repeat(parentRotation.x, 360);
-        if (xRotation > 180)
-        {
-            xRotation -= 360;
-        }
-        float yRotation = Mathf.Repeat(parentRotation.y, 360);
-        if (yRotation > 180)
-        {
-            yRotation -= 360;
-        }
-        float zRotation = Mathf.Repeat(parentRotation.z, 360);
-        if (zRotation > 180)
-        {
-            zRotation -= 360;
-        }
+        // Retrieve the modified Euler angles
+        float xRotation = transform.localRotation.eulerAngles.x;
+        float yRotation = transform.localRotation.eulerAngles.y;
+        zRotation = transform.localRotation.eulerAngles.z;
 
-        yRotation = Mathf.Abs(yRotation);
-        zRotation = Mathf.Abs(zRotation);
+        Debug.LogError("x = " + xRotation);
+        Debug.LogError("y = " + yRotation);
+        Debug.LogError("z = " + zRotation);
 
-        // Debug.LogError("y = " + yRotation);
-        // Debug.LogError("z = " + zRotation);
-        
-        // i use y and z angle because if i would use the x angle the Gible Lock Problem would be affect
-        // Start by 0 count to 90 by 90 degree back to 0 by 180 degree -> Gible Lock Problem 
-
-
-        if (yRotation >= EmptyAngle) yRotation = 180;
-        if (zRotation >= EmptyAngle) zRotation = 180;
-
-        if (yRotation <= StartTiltAngle) yRotation = StartTiltAngle;
-        if (zRotation <= StartTiltAngle) zRotation = StartTiltAngle;
-
+        // Perform your desired logic for mapping angles to values
+        // ...
 
         float maxValue = Mathf.Max(yRotation, zRotation);
         float StepPerDegree = ((MaxFillAmount - MinFillAmount) / (EmptyAngle - StartTiltAngle) - AngleAdjust);
         float currentValue = (maxValue - StartTiltAngle) * StepPerDegree + MinFillAmount;
 
-        lastValue = Mathf.Max(lastValue, currentValue);
+
+
         if (lastValue >= MaxFillAmount)
         {
             empty = true;
             lastValue = 1;
         }
 
-        //Debug.LogError("maxValue = " + maxValue);
-        //Debug.LogError("Steps = " + StepPerDegree);
-        //Debug.LogError("CurrentValue = " + currentValue);
 
-        
-
+        float scale = CurrentFillAmount - 0.001f;
+        float highestScale = Mathf.Min(scale, CurrentFillAmount);
+        if (isInCollider)
+        {
+            lastValue = highestScale;
+        }
         return lastValue;
     }
 
 
-
+    
     public void OnStay()
     {
-        //Fluid = other.gameObject;
         //Debug.LogError("Is in Collider Fluid");
-        if(isInCollider != true)
+        if (!isInCollider)
         {
             empty = false;
             isInCollider = true;
             //CurrentFillAmount = MaxFillAmount;
             if (CurrentFillAmount >= MaxFillAmount)
-                CurrentFillAmount = MaxFillAmount;
-            else
-                CurrentFillAmount = fillValue;
+                CurrentFillAmount = MaxFillAmount-0.01f;
         }
 
     }
     public void OnExit()
     {
+        //Debug.LogError("Is OUT Collider Fluid");
         isInCollider = false;
-        isFillingUp = false;
-
-        StopAllCoroutines();
-        CurrentFillAmount = fillValue;
-
-        
-        //Debug.LogError("Is Out of Collider Fluid");
     }
-
-    void fillUp()
-    {
-        if (!isFillingUp && CurrentFillAmount!=MinFillAmount)
-        {
-            isFillingUp = true;
-            StartCoroutine(fill());
-        }
-    }
-    IEnumerator fill()
-    {
-        while (CurrentFillAmount > MinFillAmount)
-        {
-            //Debug.LogError("Is in while " + CurrentFillAmount);
-            yield return new WaitForSeconds(0.01f);
-            CurrentFillAmount -= 0.001f;
-            fillValue = CurrentFillAmount;
-            //Debug.LogError(fillValue + " ");
-        }
-        CurrentFillAmount = MinFillAmount;
-        isFillingUp = false;
-
-    }
-    // test ende
+    
     /*
-    void OnCollisionStay(Collision other)
+    //new
+    void OnTriggerStay(Collider other)
     {
-        Debug.LogError("Is in Collider");
         if (other.gameObject.CompareTag("Fluid"))
         {
-            empty = false;
-            //Fluid = other.gameObject;
-            Debug.LogError("Is in Collider Fluid");
-            isInCollider = true;
+  
+            if (!isInCollider)
+            {
+                //Debug.LogError("is in Collider");
+                if (CurrentFillAmount >= MaxFillAmount)
+                    CurrentFillAmount = MaxFillAmount-0.01f;
+                isInCollider = true;
+                empty = false;
+            }
+
         }
 
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Brew03"))
+        if (other.gameObject.CompareTag("Fluid"))
         {
-            //Debug.LogError("Is in Collider");
+            if (CurrentFillAmount >= MaxFillAmount)
+                CurrentFillAmount = MaxFillAmount - 0.01f;
             empty = false;
-            CurrentFillAmount = MinFillAmount;
         }
     }
     void OnTriggerExit(Collider other)
     {
+        //Debug.LogError("is out of Collider");
         isInCollider = false;
+        SScale = CurrentFillAmount;
     }
     */
-
 }
