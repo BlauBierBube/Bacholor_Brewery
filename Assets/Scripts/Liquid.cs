@@ -51,6 +51,8 @@ public class Liquid : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        empty = true;//änderung
+        fillAmount = 1;//änderung
         GetMeshAndRend();
     }
 
