@@ -220,6 +220,7 @@ public class Liquid_Beer_Glas : MonoBehaviour
 
     float MapAngleToValue()
     {
+        /*
         // Scales the CurrentFillAmount "up" so the Liquid goes down when the Bottle is Tilted
         // Uses the Y and Z Angle of the Parent, X Angle gives trouble because of the Gimbal Lock Problem
 
@@ -238,9 +239,9 @@ public class Liquid_Beer_Glas : MonoBehaviour
         float yRotation = transform.localRotation.eulerAngles.y;
         zRotation = transform.localRotation.eulerAngles.z;
 
-        Debug.LogError("x = " + xRotation);
-        Debug.LogError("y = " + yRotation);
-        Debug.LogError("z = " + zRotation);
+        //Debug.LogError("x = " + xRotation);
+        //Debug.LogError("y = " + yRotation);
+        //Debug.LogError("z = " + zRotation);
 
         // Perform your desired logic for mapping angles to values
         // ...
@@ -248,8 +249,63 @@ public class Liquid_Beer_Glas : MonoBehaviour
         float maxValue = Mathf.Max(yRotation, zRotation);
         float StepPerDegree = ((MaxFillAmount - MinFillAmount) / (EmptyAngle - StartTiltAngle) - AngleAdjust);
         float currentValue = (maxValue - StartTiltAngle) * StepPerDegree + MinFillAmount;
+        */
+        // Scales the CurrentFillAmount "up" so the Liquide goes down when the Bottle is Tilted
+        // Uses the Y and Z Angle of the Parent, X Angle gives trouble because of the Gible Lock Problem 
+
+        // Scales the CurrentFillAmount "up" so the Liquide goes down when the Bottle is Tilted
+        // Uses the Y and Z Angle of the Parent, X Angle gives trouble because of the Gible Lock Problem 
+
+        //CurrentFillAmount = fillValue;
+
+        float lastValue = CurrentFillAmount;
+        //Debug.LogError("fillValue = " + fillValue);
+        //Debug.LogError("CuFillAmount = " + CurrentFillAmount);
+        //Debug.LogError("lastValue = " + lastValue);
+        Vector3 parentRotation = transform.parent.transform.localRotation.eulerAngles;
 
 
+
+        float xRotation = Mathf.Repeat(parentRotation.x, 360);
+        if (xRotation > 180)
+        {
+            xRotation -= 360;
+        }
+        float yRotation = Mathf.Repeat(parentRotation.y, 360);
+        if (yRotation > 180)
+        {
+            yRotation -= 360;
+        }
+        float zRotation = Mathf.Repeat(parentRotation.z, 360);
+        if (zRotation > 180)
+        {
+            zRotation -= 360;
+        }
+        //Debug.LogError("x = " + xRotation);
+        //Debug.LogError("y = " + yRotation);
+        //Debug.LogError("z = " + zRotation);
+        xRotation = Mathf.Abs(xRotation);
+        yRotation = Mathf.Abs(yRotation);
+        zRotation = Mathf.Abs(zRotation);
+
+
+
+        // i use y and z angle because if i would use the x angle the Gible Lock Problem would be affect
+        // Start by 0 count to 90 by 90 degree back to 0 by 180 degree -> Gible Lock Problem 
+
+
+        if (yRotation >= EmptyAngle) yRotation = 180;
+        if (zRotation >= EmptyAngle) zRotation = 180;
+
+        if (yRotation <= StartTiltAngle) yRotation = StartTiltAngle;
+        if (zRotation <= StartTiltAngle) zRotation = StartTiltAngle;
+
+
+        float maxValue = Mathf.Max(yRotation, zRotation);
+        float StepPerDegree = ((MaxFillAmount - MinFillAmount) / (EmptyAngle - StartTiltAngle) - AngleAdjust);
+        float currentValue = (maxValue - StartTiltAngle) * StepPerDegree + MinFillAmount;
+
+        lastValue = Mathf.Max(lastValue, currentValue);
 
         if (lastValue >= MaxFillAmount)
         {

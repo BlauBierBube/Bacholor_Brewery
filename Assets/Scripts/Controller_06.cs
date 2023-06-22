@@ -197,6 +197,7 @@ namespace Oculus.Interaction
             //Debug.LogError("Step05 is aktiv");
             Text02.SetActive(false);
             Text03.SetActive(true);
+            WaterAni06.SetActive(false);
             PipeHole.SetActive(true);
             s2 = false;
             Switch02.layer = HighlightLayer;

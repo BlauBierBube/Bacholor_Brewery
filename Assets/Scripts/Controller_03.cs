@@ -304,7 +304,7 @@ namespace Oculus.Interaction
             Container.layer = HighlightLayer;
             //Button and Index Number
             StartCoroutine(WaitButton_Station());
-
+            Invoke("ForwardBT_Station", 10f);
             i = 5;
         }
         public void Step10() // Messbehaelter
@@ -312,13 +312,15 @@ namespace Oculus.Interaction
 
             Sample.layer = Default;
             Braukessel.layer = Default;
+            Text06_B.fontStyle = FontStyles.Strikethrough;
             Invoke("ForwardBT_Station", 2f);
         }
 
         public void Step11() // Messspindel
         {
             //Debug.LogError("Step10 is aktiv");
-
+            Sample.layer = Default;
+            Braukessel.layer = Default;
             Text06.SetActive(false);
             Text07.SetActive(true);
             // Braukessel Outline off
@@ -335,7 +337,7 @@ namespace Oculus.Interaction
         }
         public void Step12() // Messspindel
         {
-
+            Text07_S.fontStyle = FontStyles.Strikethrough;
             Container.layer = Default;
             Spindel.layer = Default;
             Invoke("ForwardBT_Station", 2f);

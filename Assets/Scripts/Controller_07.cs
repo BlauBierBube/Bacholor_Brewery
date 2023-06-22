@@ -181,6 +181,8 @@ namespace Oculus.Interaction
 
         public void Step05()
         {
+            PipeHole.SetActive(true);
+            WaterAni07.SetActive(false);
             Text02.SetActive(false);
             Text03.SetActive(true);
             //Debug.LogError("Step05 is aktiv");

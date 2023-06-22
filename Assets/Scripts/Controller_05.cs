@@ -19,6 +19,7 @@ namespace Oculus.Interaction
         [SerializeField] TMP_Text Text02_T;
         [SerializeField] GameObject Text03;
         [SerializeField] GameObject Text04;
+        [SerializeField] GameObject Text05;
 
         [SerializeField] Transform Needle01;
         [SerializeField] Transform Needle02;
@@ -132,17 +133,26 @@ namespace Oculus.Interaction
             Invoke("ForwardBT", 2f);
             i = 2;
         }
-
         public void Step04()
         {
             Text03.SetActive(false);
             Text04.SetActive(true);
+
+            //Button Backward and Index Number
+            StartCoroutine(WaitButton());
+            Invoke("ForwardBT", 2f);
+            i = 3;
+        }
+        public void Step05()
+        {
+            Text04.SetActive(false);
+            Text05.SetActive(true);
             //Holo_Area06.SetActive(true);
             FindObjectOfType<Controller_06>().Aktivate();
             Machine.Stop();
             //Button Backward and Index Number
             StartCoroutine(WaitButton());
-            i = 3;
+            i = 4;
         }
 
 
@@ -152,7 +162,8 @@ namespace Oculus.Interaction
                 Step00,
                 Step01,
                 Step03,
-                Step04
+                Step04,
+                Step05
             };
             i++;
             steps[i]();
@@ -162,7 +173,8 @@ namespace Oculus.Interaction
             Action[] steps = new Action[]{
                 Step00,
                 Step01,
-                Step03
+                Step03,
+                Step04
             };
 
             Text01.SetActive(false);
